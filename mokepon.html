@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>Mokepon2</title>
+        <script src="./js/mokepon.js"></script>
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        
+        <section id="seleccionar-mascota">
+            <h1 class="tituinicio">MOKEPON 🔥 🌊 🌎 </h1>
+
+            <h2 class="subtitulo" > Selecciona tu Mokepon</h2>
+            <!--Definir las mascotas-->
+            <div class="tarjetas">
+                <label class="tarjeta-de-mokepon" for="hipodo">
+                    <P>Hipodo</P>
+                    <img src="./images/hipodo.png" alt="Hipodo">
+                    
+                </label>
+                <input id="hipodo" type="radio" name="mascota"  />
+                
+                <label class="tarjeta-de-mokepon" for="capi">
+                    <P>Capi</P>
+                    <img src="./images/capi.png" alt="Hipodo">
+                    
+                </label>
+                <input id="capi" type="radio" name="mascota"  /> 
+                
+                <label class="tarjeta-de-mokepon" for="rat">
+                    <P>Rat</P>
+                    <img src="./images/rat.png" alt="Hipodo">
+                    
+                </label>
+                <input id="rat" type="radio" name="mascota"  />                  
+            </div>
+            
+            <button id="btnselectmascota">Seleccionar</button>
+        </section>
+
+        <section id="seleccionar-ataque">
+            <h1 class="tituinicio">MOKEPON 🔥 🌊 🌎 </h1>
+
+            <h2 class="subtitulo">Elige el ataque:</h2>
+            <div>
+                <button class="boton-ataque" id="btnfuego"> Fuego 🔥</button>
+                <button class="boton-ataque" id="btnagua"> Agua 🌊</button>
+                <button class="boton-ataque" id="btntierra"> Tierra 🌎</button>
+            </div>
+            
+            <div>
+                <div id="eventos">
+                    <p id="resultado">Que la suerte te acompañe viajero 👦</p>
+
+                    <section id="reiniciar">
+                        <button id="btnreiniciar">Volver a jugar</button>
+                    </section>
+                </div>
+                
+                
+            </div>
+            
+            <div>
+                <div id="ataques-jugador"></div>
+                <div id="ataques-enemigo"></div>
+                <p>Tu mascota <span id="nommacotapl"></span> tiene <spa id="vidapl">3</spa> vidas</p>
+                <p>La mascota <span id="nommacotapc"></span> del rival tiene <spa id="vidapc">3</spa> vidas</p>
+            </div>
+        </section>
+    </body>
+</html>

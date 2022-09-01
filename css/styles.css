@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@100&display=swap');
+
+
+*{
+    font-family: 'Fredoka One', cursive, 'poppins',sans-serif;
+    /*background-color: #0078AA;*/
+}
+body{
+    background-color: #0078AA;
+}
+#seleccionar-mascota{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituinicio{
+    color: #FDF541;
+    font-size:40px;
+}
+
+.subtitulo{
+    color: #FDF541;
+    font-size:24px;
+}
+
+
+
+.tarjetas{
+    display: flex;
+    gap:10px
+}
+
+.tarjeta-de-mokepon{
+    width: 150px;
+    height: 100px;
+    background: #3AB4F2;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 5px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    color:  white;
+    cursor: pointer;
+    transition: transform.2s ;
+}
+/* .tarjeta-de-mokepon :target{
+    outline: 2px solid #F7EC09;
+    
+} */
+.tarjeta-de-mokepon:hover{
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
+    transition: 0.3s;
+    outline: 2px solid #F7EC09;
+    transform: scale(1.2);
+}
+.tarjeta-de-mokepon img{
+    width: 80PX;
+}
+
+input{
+    display: none;
+}
+
+#btnselectmascota{
+    border-radius: 14px;
+    width: 110px;
+    height: 32px;
+    padding: 7px;
+    margin: 10px;
+    background-color: #F2DF3A;
+    text-align: center;
+    border: 2px solid #3AB4F2;
+    transition: 0.3s;
+    cursor: pointer;
+    Color:white;
+    
+}
+
+#btnselectmascota:hover{
+    background-color: #F7EC09;
+    color: white;
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
+    transition: 0.3s;
+    transform: scale(1.2);
+}
+
+#seleccionar-ataque{
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-ataque{
+    background-color: #3AB4F2;
+    border-radius: 14px;
+    width: 110px;
+    height: 32px;
+    padding: 7px;
+    margin: 10px;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    Color:#F6F6F6;
+    border: 1px solid transparent;
+}
+
+.boton-ataque:hover{
+    border: 2px solid #F7EC09;   
+    color: white;
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
+    transition: 0.3s;
+    transform: scale(1.2);
+}
+
+#eventos{
+    width: 350px;
+    background: #3AB4F2;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#btnreiniciar{
+    border-radius: 14px;
+    /*width: 110px;*/
+    height: 42px;
+    padding: 7px;
+    margin: 10px 0px 10px 0px;
+    background-color: #F2DF3A;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    Color:white;
+    display:  inline-block;
+    border: 2px solid #F6F6F6; 
+}
+
+#btnreiniciar:hover{
+    border: 2px solid #F6F6F6;   
+    color: white;
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
+    transition: 0.3s;
+    transform: scale(1.3);
+    animation: bouncel .5s alternate infinite ease-in; 
+    
+}
+@keyframes bouncel{
+    0%{
+        transform: translateY(-10%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
