@@ -27,7 +27,7 @@ body{
 
 
 
-.tarjetas{
+.tarjetas, .tarjetas-ataques{
     display: flex;
     gap:10px
 }
@@ -120,6 +120,7 @@ input{
     background: #3AB4F2;
     padding: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -161,12 +162,27 @@ input{
 
 .desarrollo-combate{
     display: grid;
-    grid-template-columns: 100px 100px;
-    text-align: center;
+    grid-template-columns: 160px 160px;
+    color:#F6F6F6;
+}
+
+#vidapl ,#vidapc{
+    font-size: 32px;
+    margin-bottom:0 ;
+}
+
+.ataquesJugadorEvent, .ataquesPcrEvent{
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    background-color: #3AB4F2;
+    margin-right: 2em;
 }
 
 @media (max-width:360px){
-    .tarjetas{
-      flex-direction: column;  
+    .tarjetas, .tarjetas-ataques{
+        flex-direction: column;  
     }
+    
 }
+
