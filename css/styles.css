@@ -52,17 +52,30 @@ body{
     
 } */
 .tarjeta-de-mokepon:hover{
-    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
-    transition: 0.3s;
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24);
+    transition: 0.5s;
     outline: 2px solid #F7EC09;
     transform: scale(1.2);
+    margin: 0px 10px 0px 10px;
+}
+.tarjeta-de-mokepon img:hover {
+    animation: bouncel .5s alternate infinite ease-in;
 }
 .tarjeta-de-mokepon img{
     width: 80PX;
+
 }
 
 input{
-    display: none;
+    display: none; 
+}
+
+input:checked +label{
+    box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24);
+    transition: 0.3s;
+    outline: 2px solid #F7EC09;
+    transform: scale(1.2);
+    margin: 0px 24px 0px 24px;
 }
 
 #btnselectmascota{
@@ -77,7 +90,6 @@ input{
     transition: 0.3s;
     cursor: pointer;
     Color:white;
-    
 }
 
 #btnselectmascota:hover{
