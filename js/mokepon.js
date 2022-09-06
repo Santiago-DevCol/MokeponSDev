@@ -1,39 +1,61 @@
+//Variables de la funcion iniciarJuego()
+let sectionAtaques=document.getElementById('seleccionar-ataque')
+let sectionReiniciar=document.getElementById('reiniciar')
+let btnsSelectMascotaPl = document.getElementById('btnselectmascota')
+let btnFuego =document.getElementById('btnfuego')
+let btnAgua =document.getElementById('btnagua')
+let btnTierra =document.getElementById('btntierra')
+let btnReiniciar =document.getElementById('btnreiniciar')
+
+// variables de la funcion seleccionar mascotaPl()
+let sectionMascota=document.getElementById('seleccionar-mascota')
+//let sectionAtaques=document.getElementById('seleccionar-ataque')//repetida con el primer bloque de variables
+let imphipodo=document.getElementById('hipodo') 
+let impcapi=document.getElementById('capi') 
+let imprat=document.getElementById('rat') 
+let spnmascotapl=document.getElementById('nommacotapl')
+
+// variables de la funcion selectMascotaPc
+let spnmascotapc = document.getElementById('nommacotapc')
+
+//variables de la fincion combate()
+let spanVidaJugador =document.getElementById('vidapl')
+let spanVidaPc =document.getElementById('vidapc')
+
+// variables de la funcion vrearMensaje(resultado)
+let seccionevent = document.getElementById('resultado')
+let ataquesJugador = document.getElementById('ataques-jugador')
+let ataquesEnemigo = document.getElementById('ataques-enemigo')
+
+
+
 let ataqueJugador
 let ataqAleatorio
 let vidasJugador =3
 let vidaspc =3
 //let resultadocomba
 function iniciarjuego(){
-    let sectionAtaques=document.getElementById('seleccionar-ataque')
     sectionAtaques.style.display ='none'
-    let sectionReiniciar=document.getElementById('reiniciar')
     sectionReiniciar.style.display='none'
-
-    let btnsSelectMascotaPl = document.getElementById('btnselectmascota')
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
-
-    let btnFuego =document.getElementById('btnfuego')
     btnFuego.addEventListener('click', ataqueFuego)
-    let btnAgua =document.getElementById('btnagua')
     btnAgua.addEventListener('click', ataqueAgua)
-    let btnTierra =document.getElementById('btntierra')
     btnTierra.addEventListener('click', ataqueTierra)
 //al comentar la linea 14 corregi que no se ejecutara la funcion de ataque aleatorio al inicar juego ya que traia mensaje con campo indefinido
    // ataqueAleatorioPc()
-    let btnReiniciar =document.getElementById('btnreiniciar')
     btnReiniciar.addEventListener('click',reiniciarJuego)
 }
 
 function selctMascotaPl(){
-    let sectionMascota=document.getElementById('seleccionar-mascota')
+    
     sectionMascota.style.display ='none'
-    let sectionAtaques=document.getElementById('seleccionar-ataque')
+    
     sectionAtaques.style.display ='flex'
 
-    let imphipodo=document.getElementById('hipodo') 
-    let impcapi=document.getElementById('capi') 
-    let imprat=document.getElementById('rat') 
-    let spnmascotapl=document.getElementById('nommacotapl')
+    
+    
+    
+    
     if (imphipodo.checked){
         // alert('Seleccionaste a Hipodo')
         spnmascotapl.innerHTML='Hipodo'
@@ -53,7 +75,7 @@ function selctMascotaPl(){
 
 function selctMascotaPc(){
     let selectAleatorio = aleatorio(1,3)
-    let spnmascotapc = document.getElementById('nommacotapc')
+    
     if(selectAleatorio == 1) {
         spnmascotapc.innerHTML='Hipodo'
     }else if(selectAleatorio == 2) {
@@ -89,8 +111,8 @@ function ataqueAleatorioPc(){
 }
 
 function combate(){
-    let spanVidaJugador =document.getElementById('vidapl')
-    let spanVidaPc =document.getElementById('vidapc')
+    
+    
     //combate
     if(ataqueJugador == ataqAleatorio){
         //alert("empate 🤦")
@@ -124,9 +146,6 @@ function validarVidas (){
 
 
 function crearMensaje(resultado){
-    let seccionevent = document.getElementById('resultado')
-    let ataquesJugador = document.getElementById('ataques-jugador')
-    let ataquesEnemigo = document.getElementById('ataques-enemigo')
 
     
     let nuevoAtaqueJugador= document.createElement('p')
@@ -144,6 +163,8 @@ function crearMensaje(resultado){
     ataquesEnemigo.appendChild(nuevoAtaqueEnemigo)
 
 }
+
+//debo sacar la variables de esta función.
 function crearMensajeFinal(resultadoFinal){
     let sectionReiniciar=document.getElementById('reiniciar')
     sectionReiniciar.style.display='block'
