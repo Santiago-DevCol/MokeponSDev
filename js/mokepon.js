@@ -45,7 +45,7 @@ function iniciarjuego(){
    // ataqueAleatorioPc()
     btnReiniciar.addEventListener('click',reiniciarJuego)
 }
-
+//prueba06092022
 function selctMascotaPl(){
     
     sectionMascota.style.display ='none'
