@@ -1,32 +1,38 @@
 //Variables de la funcion iniciarJuego()
-let sectionAtaques=document.getElementById('seleccionar-ataque')
-let sectionReiniciar=document.getElementById('reiniciar')
-let btnsSelectMascotaPl = document.getElementById('btnselectmascota')
-let btnFuego =document.getElementById('btnfuego')
-let btnAgua =document.getElementById('btnagua')
-let btnTierra =document.getElementById('btntierra')
-let btnReiniciar =document.getElementById('btnreiniciar')
+const sectionAtaques=document.getElementById('seleccionar-ataque')
+const sectionReiniciar=document.getElementById('reiniciar')
+const btnsSelectMascotaPl = document.getElementById('btnselectmascota')
+const btnFuego =document.getElementById('btnfuego')
+const btnAgua =document.getElementById('btnagua')
+const btnTierra =document.getElementById('btntierra')
+const btnReiniciar =document.getElementById('btnreiniciar')
 
 // variables de la funcion seleccionar mascotaPl()
-let sectionMascota=document.getElementById('seleccionar-mascota')
+const sectionMascota=document.getElementById('seleccionar-mascota')
 //let sectionAtaques=document.getElementById('seleccionar-ataque')//repetida con el primer bloque de variables
-let imphipodo=document.getElementById('hipodo') 
-let impcapi=document.getElementById('capi') 
-let imprat=document.getElementById('rat') 
-let spnmascotapl=document.getElementById('nommacotapl')
+const imphipodo=document.getElementById('hipodo') 
+const impcapi=document.getElementById('capi') 
+const imprat=document.getElementById('rat') 
+const spnmascotapl=document.getElementById('nommacotapl')
 
 // variables de la funcion selectMascotaPc
-let spnmascotapc = document.getElementById('nommacotapc')
+const spnmascotapc = document.getElementById('nommacotapc')
 
 //variables de la fincion combate()
-let spanVidaJugador =document.getElementById('vidapl')
-let spanVidaPc =document.getElementById('vidapc')
+const spanVidaJugador =document.getElementById('vidapl')
+const spanVidaPc =document.getElementById('vidapc')
 
-// variables de la funcion vrearMensaje(resultado)
-let seccionevent = document.getElementById('resultado')
-let ataquesJugador = document.getElementById('ataques-jugador')
-let ataquesEnemigo = document.getElementById('ataques-enemigo')
+// variables de la funcion crearMensaje(resultado)
+const seccionevent = document.getElementById('resultado')
+const ataquesJugador = document.getElementById('ataques-jugador')
+const ataquesEnemigo = document.getElementById('ataques-enemigo')
 
+// variables de la funcion crearMensajeFinal
+    //let seccionevent = document.getElementById('resultado')
+//let btnFuego =document.getElementById('btnfuego')
+//let btnAgua =document.getElementById('btnagua')
+//let btnTierra =document.getElementById('btntierra')
+//let sectionReiniciar=document.getElementById('reiniciar')
 
 
 let ataqueJugador
@@ -45,7 +51,7 @@ function iniciarjuego(){
    // ataqueAleatorioPc()
     btnReiniciar.addEventListener('click',reiniciarJuego)
 }
-//prueba06092022
+
 function selctMascotaPl(){
     
     sectionMascota.style.display ='none'
@@ -166,19 +172,15 @@ function crearMensaje(resultado){
 
 //debo sacar la variables de esta función.
 function crearMensajeFinal(resultadoFinal){
-    let sectionReiniciar=document.getElementById('reiniciar')
+    
     sectionReiniciar.style.display='block'
 
-    let seccionevent = document.getElementById('resultado')
     let parrafo= document.createElement('p')
     parrafo.innerHTML=resultadoFinal
     seccionevent.appendChild(parrafo)
 
-    let btnFuego =document.getElementById('btnfuego')
     btnFuego.disabled = true
-    let btnAgua =document.getElementById('btnagua')
     btnAgua.disabled = true
-    let btnTierra =document.getElementById('btntierra')
     btnTierra.disabled = true
 }
 
