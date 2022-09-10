@@ -9,7 +9,6 @@ const btnReiniciar =document.getElementById('btnreiniciar')
 
 // variables de la funcion seleccionar mascotaPl()
 const sectionMascota=document.getElementById('seleccionar-mascota')
-//let sectionAtaques=document.getElementById('seleccionar-ataque')//repetida con el primer bloque de variables
 const imphipodo=document.getElementById('hipodo') 
 const impcapi=document.getElementById('capi') 
 const imprat=document.getElementById('rat') 
@@ -26,20 +25,61 @@ const spanVidaPc =document.getElementById('vidapc')
 const seccionevent = document.getElementById('resultado')
 const ataquesJugador = document.getElementById('ataques-jugador')
 const ataquesEnemigo = document.getElementById('ataques-enemigo')
-
-// variables de la funcion crearMensajeFinal
-    //let seccionevent = document.getElementById('resultado')
-//let btnFuego =document.getElementById('btnfuego')
-//let btnAgua =document.getElementById('btnagua')
-//let btnTierra =document.getElementById('btntierra')
-//let sectionReiniciar=document.getElementById('reiniciar')
-
+//pirmeros conceptos de array
+    //primeros objetos de la clase Mokepon
+let mokepones = []
 
 let ataqueJugador
 let ataqAleatorio
 let vidasJugador =3
 let vidaspc =3
-//let resultadocomba
+class Mokepon{
+    //objetos instancia
+    constructor(nombre,foto,vida){
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+        this.ataques = []
+    }
+}
+
+let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5)
+
+let capi= new Mokepon('Capi','./images/capi.png',5)
+
+let rat= new Mokepon('Rat','./images/rat.png',5)
+
+hipodo.ataques.push(
+    //objetos literarios
+    {nombre: '🌊',id:'btnagua'},
+    {nombre: '🌊',id:'btnagua'},
+    {nombre: '🌊',id:'btnagua'},
+    {nombre: '🌎',id:'btntierra'},
+    {nombre: '🔥',id:'btnfuego'},
+)
+
+capi.ataques.push(
+    //objetos literarios
+    {nombre: '🌎',id:'btntierra'},
+    {nombre: '🌎',id:'btntierra'},
+    {nombre: '🌎',id:'btntierra'},
+    {nombre: '🌊',id:'btnagua'},
+    {nombre: '🔥',id:'btnfuego'},
+)
+
+rat.ataques.push(
+    //objetos literarios
+    {nombre: '🔥',id:'btnfuego'},
+    {nombre: '🔥',id:'btnfuego'},
+    {nombre: '🔥',id:'btnfuego'},
+    {nombre: '🌊',id:'btnagua'},
+    {nombre: '🌎',id:'btntierra'},
+)
+
+//mokepones.push(hipodo,capi,rat)
+
+
+
 function iniciarjuego(){
     sectionAtaques.style.display ='none'
     sectionReiniciar.style.display='none'
@@ -53,9 +93,7 @@ function iniciarjuego(){
 }
 
 function selctMascotaPl(){
-    
     sectionMascota.style.display ='none'
-    
     sectionAtaques.style.display ='flex'
 
     
@@ -170,7 +208,6 @@ function crearMensaje(resultado){
 
 }
 
-//debo sacar la variables de esta función.
 function crearMensajeFinal(resultadoFinal){
     
     sectionReiniciar.style.display='block'
