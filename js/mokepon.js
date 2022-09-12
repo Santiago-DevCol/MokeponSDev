@@ -42,6 +42,7 @@ class Mokepon{
         this.vida = vida
         this.ataques = []
     }
+
 }
 
 let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5)
@@ -77,13 +78,14 @@ rat.ataques.push(
     {nombre: '🌎',id:'btntierra'},
 )
 
-//mokepones.push(hipodo,capi,rat)
-
+mokepones.push(hipodo, capi, rat)
 
 
 function iniciarjuego(){
     sectionAtaques.style.display ='none'
     sectionReiniciar.style.display='none'
+    mokepones.forEach()//AQUI VOY
+
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
     btnFuego.addEventListener('click', ataqueFuego)
     btnAgua.addEventListener('click', ataqueAgua)
