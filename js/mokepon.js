@@ -1,4 +1,5 @@
 //Variables de la funcion iniciarJuego()
+const contenedorTarjetas=document.getElementById('contenedorTarjetas')
 const sectionAtaques=document.getElementById('seleccionar-ataque')
 const sectionReiniciar=document.getElementById('reiniciar')
 const btnsSelectMascotaPl = document.getElementById('btnselectmascota')
@@ -9,9 +10,6 @@ const btnReiniciar =document.getElementById('btnreiniciar')
 
 // variables de la funcion seleccionar mascotaPl()
 const sectionMascota=document.getElementById('seleccionar-mascota')
-const imphipodo=document.getElementById('hipodo') 
-const impcapi=document.getElementById('capi') 
-const imprat=document.getElementById('rat') 
 const spnmascotapl=document.getElementById('nommacotapl')
 const imgPl=document.getElementById('imgCombatiente')//agrgar imagem al dom
 // variables de la funcion selectMascotaPc
@@ -28,9 +26,12 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
-
 let ataqueJugador
 let ataqAleatorio
+let opcionDeMokepones
+let imphipodo
+let impcapi
+let imprat
 let vidasJugador =3
 let vidaspc =3
 
@@ -78,13 +79,27 @@ rat.ataques.push(
     {nombre: '🌎',id:'btntierra'},
 )
 
+
 mokepones.push(hipodo, capi, rat)
 
 
 function iniciarjuego(){
     sectionAtaques.style.display ='none'
-    sectionReiniciar.style.display='none'
-    mokepones.forEach()//AQUI VOY
+    sectionReiniciar.style.display ='none'
+    mokepones.forEach((Mokepon) => {
+        opcionDeMokepones = `
+        <input id=${Mokepon.nombre} type="radio" name="mascota"  />
+        <label class="tarjeta-de-mokepon" for=${Mokepon.nombre}>
+            <P>${Mokepon.nombre}</P>
+            <img src=${Mokepon.foto} alt=${Mokepon.nombre}>
+        </label>
+        `
+        contenedorTarjetas.innerHTML += opcionDeMokepones
+
+        imphipodo=document.getElementById('Hipodo') 
+        impcapi=document.getElementById('Capi') 
+        imprat=document.getElementById('Rat') 
+    })
 
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
     btnFuego.addEventListener('click', ataqueFuego)
@@ -104,19 +119,19 @@ function selctMascotaPl(){
     
     if (imphipodo.checked){
         // alert('Seleccionaste a Hipodo')
-        spnmascotapl.innerHTML='Hipodo'
+        spnmascotapl.innerHTML=imphipodo.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src='./images/hipodo.png'
 
     }else if (impcapi.checked){
         //alert('Seleccionaste a Capi')
-        spnmascotapl.innerHTML='Capi'
+        spnmascotapl.innerHTML=impcapi.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src='./images/capi.png'
         
     }else if (imprat.checked){
         //alert('Seleccionaste a rat')
-        spnmascotapl.innerHTML='Rat'
+        spnmascotapl.innerHTML=imprat.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src='./images/rat.png'
     }else {
