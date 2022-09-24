@@ -32,6 +32,7 @@ let opcionDeMokepones
 let imphipodo
 let impcapi
 let imprat
+let mokeponFoto
 let vidasJugador =3
 let vidaspc =3
 
@@ -121,24 +122,35 @@ function selctMascotaPl(){
         // alert('Seleccionaste a Hipodo')
         spnmascotapl.innerHTML=imphipodo.id
         //agregar imagen mokepon al apartado de resumen del
-        imgPl.src='./images/hipodo.png'
+        imgPl.src= obtenerFoto(imphipodo.id)
 
     }else if (impcapi.checked){
         //alert('Seleccionaste a Capi')
         spnmascotapl.innerHTML=impcapi.id
         //agregar imagen mokepon al apartado de resumen del
-        imgPl.src='./images/capi.png'
+        imgPl.src= obtenerFoto(impcapi.id)
         
     }else if (imprat.checked){
         //alert('Seleccionaste a rat')
         spnmascotapl.innerHTML=imprat.id
         //agregar imagen mokepon al apartado de resumen del
-        imgPl.src='./images/rat.png'
+        imgPl.src= obtenerFoto(imprat.id)
+        
     }else {
         alert('Debes seleccionar una mascota 😅')
         location.reload()
     }
     selctMascotaPc()
+}
+
+function obtenerFoto(nombreMokepon){
+    
+    mokepones.forEach((Mokepon) =>{
+        if(Mokepon.nombre == nombreMokepon){
+            mokeponFoto = Mokepon.foto
+        }
+    })
+    return mokeponFoto
 }
 
 function selctMascotaPc(){
