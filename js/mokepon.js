@@ -33,6 +33,7 @@ let imphipodo
 let impcapi
 let imprat
 let mokeponFoto
+let mokeponFotoPc
 let vidasJugador =3
 let vidaspc =3
 
@@ -153,24 +154,24 @@ function obtenerFoto(nombreMokepon){
     return mokeponFoto
 }
 
+function obtenerFotoAleatorio(nombreMokeponPc){
+    
+    mokepones.forEach((Mokepon) =>{
+        if(Mokepon.nombre == nombreMokeponPc){
+            mokeponFotoPc = Mokepon.foto
+        }
+    })
+    return mokeponFoto
+}//validar como puedo poner la imagen de un mokepon aleatorio
+
 function selctMascotaPc(){
-    let selectAleatorio = aleatorio(1,3)
+    let selectAleatorio = aleatorio(0, mokepones.length -1)
     //agregar imagen mokepon al apartado de resumen del
     imgpc.style.width='80px'
     
-    if(selectAleatorio == 1) {
-        spnmascotapc.innerHTML='Hipodo'
-        //agregar imagen mokepon al apartado de resumen del
-        imgpc.src='./images/hipodo.png'
-    }else if(selectAleatorio == 2) {
-        spnmascotapc.innerHTML='capi'
-        //agregar imagen mokepon al apartado de resumen del
-        imgpc.src='./images/capi.png'
-    } else if(selectAleatorio == 3){
-        spnmascotapc.innerHTML='Rat'
-        //agregar imagen mokepon al apartado de resumen del
-        imgpc.src='./images/rat.png'
-    }
+    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
+    imgpc.src=obtenerFoto(mokepones.id)
+
 }
 
 function ataqueFuego(){
