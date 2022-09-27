@@ -154,23 +154,14 @@ function obtenerFoto(nombreMokepon){
     return mokeponFoto
 }
 
-function obtenerFotoAleatorio(nombreMokeponPc){
-    
-    mokepones.forEach((Mokepon) =>{
-        if(Mokepon.nombre == nombreMokeponPc){
-            mokeponFotoPc = Mokepon.foto
-        }
-    })
-    return mokeponFoto
-}//validar como puedo poner la imagen de un mokepon aleatorio
-
 function selctMascotaPc(){
     let selectAleatorio = aleatorio(0, mokepones.length -1)
     //agregar imagen mokepon al apartado de resumen del
     imgpc.style.width='80px'
-    
+
     spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
-    imgpc.src=obtenerFoto(mokepones.id)
+    imgpc.src=mokepones[selectAleatorio].foto
+    
 
 }
 
