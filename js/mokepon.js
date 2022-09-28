@@ -33,7 +33,6 @@ let imphipodo
 let impcapi
 let imprat
 let mokeponFoto
-let mokeponFotoPc
 let vidasJugador =3
 let vidaspc =3
 
