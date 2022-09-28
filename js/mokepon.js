@@ -1,11 +1,9 @@
 //Variables de la funcion iniciarJuego()
 const contenedorTarjetas=document.getElementById('contenedorTarjetas')
+const contenedorAtaques= document.getElementById('contenedor-ataques')
 const sectionAtaques=document.getElementById('seleccionar-ataque')
 const sectionReiniciar=document.getElementById('reiniciar')
 const btnsSelectMascotaPl = document.getElementById('btnselectmascota')
-const btnFuego =document.getElementById('btnfuego')
-const btnAgua =document.getElementById('btnagua')
-const btnTierra =document.getElementById('btntierra')
 const btnReiniciar =document.getElementById('btnreiniciar')
 
 // variables de la funcion seleccionar mascotaPl()
@@ -33,6 +31,11 @@ let imphipodo
 let impcapi
 let imprat
 let mokeponFoto
+let ataquesMascotaJugador
+let opcionDeAtaques
+let btnFuego 
+let btnAgua 
+let btnTierra 
 let vidasJugador =3
 let vidaspc =3
 
@@ -103,9 +106,7 @@ function iniciarjuego(){
     })
 
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
-    btnFuego.addEventListener('click', ataqueFuego)
-    btnAgua.addEventListener('click', ataqueAgua)
-    btnTierra.addEventListener('click', ataqueTierra)
+
 //al comentar la linea 14 corregi que no se ejecutara la funcion de ataque aleatorio al inicar juego ya que traia mensaje con campo indefinido
    // ataqueAleatorioPc()
     btnReiniciar.addEventListener('click',reiniciarJuego)
@@ -123,24 +124,37 @@ function selctMascotaPl(){
         spnmascotapl.innerHTML=imphipodo.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src= obtenerFoto(imphipodo.id)
+        ataquesMascotaJugador=imphipodo.id
 
     }else if (impcapi.checked){
         //alert('Seleccionaste a Capi')
         spnmascotapl.innerHTML=impcapi.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src= obtenerFoto(impcapi.id)
-        
+        ataquesMascotaJugador = impcapi.id
     }else if (imprat.checked){
         //alert('Seleccionaste a rat')
         spnmascotapl.innerHTML=imprat.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src= obtenerFoto(imprat.id)
-        
+        ataquesMascotaJugador = imprat.nombre
     }else {
         alert('Debes seleccionar una mascota 😅')
         location.reload()
     }
+
+    extraerAtaques(ataquesMascotaJugador)
     selctMascotaPc()
+}
+
+function extraerAtaques(ataquesMascotaJugador){
+    let ataques
+    for (let i = 0; i < mokepones.length; i++) {
+        if (ataquesMascotaJugador === mokepones[i].nombre) {
+            ataques =  mokepones[i].ataques
+        }
+    }
+        mostrarAtaques(ataques)
 }
 
 function obtenerFoto(nombreMokepon){
@@ -162,6 +176,23 @@ function selctMascotaPc(){
     imgpc.src=mokepones[selectAleatorio].foto
     
 
+}
+
+function mostrarAtaques(ataques) {
+    ataques.forEach((ataque) => {
+        opcionDeAtaques = `
+        <button class="boton-ataque" id=${ataque.id}> ${ataque.nombre} </button>
+        `
+        contenedorAtaques.innerHTML += opcionDeAtaques
+    })
+
+    btnFuego =document.getElementById('btnfuego')
+    btnAgua =document.getElementById('btnagua')
+    btnTierra =document.getElementById('btntierra')
+
+    btnFuego.addEventListener('click', ataqueFuego)
+    btnAgua.addEventListener('click', ataqueAgua)
+    btnTierra.addEventListener('click', ataqueTierra)
 }
 
 function ataqueFuego(){
