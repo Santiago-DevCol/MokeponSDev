@@ -137,7 +137,7 @@ function selctMascotaPl(){
         spnmascotapl.innerHTML=imprat.id
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src= obtenerFoto(imprat.id)
-        ataquesMascotaJugador = imprat.nombre
+        ataquesMascotaJugador = imprat.id
     }else {
         alert('Debes seleccionar una mascota 😅')
         location.reload()
