@@ -139,8 +139,22 @@ function selctMascotaPl(){
         imgPl.src= obtenerFoto(imprat.id)
         ataquesMascotaJugador = imprat.id
     }else {
-        alert('Debes seleccionar una mascota 😅')
-        location.reload()
+        //alert('Debes seleccionar una mascota 😅')
+        //location.reload()
+        swal.fire({
+            title:"Debes seleccionar una mascota 😅",
+            icon:'warning',
+            confirmButtonText:'Ups! 😬',
+            backdrop:true,
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            allowEnterKey:true,
+            stopKeydownPropagation:false,
+            confirmButtonColor:'#3AB4F2'
+        }).then(function(){
+            location.reload()
+        })
+        
     }
 
     extraerAtaques(ataquesMascotaJugador)
