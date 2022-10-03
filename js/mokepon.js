@@ -219,7 +219,7 @@ function secuenciaAtaque(){
             }
         })
     })
-}//aqui voy min
+}//aqui voy class 56 
 
 function selctMascotaPc(){
     let selectAleatorio = aleatorio(0, mokepones.length -1)
