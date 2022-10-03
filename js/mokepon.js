@@ -24,7 +24,7 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
-let ataqueJugador
+let ataqueJugador =[]
 let ataqAleatorio
 let opcionDeMokepones
 let imphipodo
@@ -36,6 +36,7 @@ let opcionDeAtaques
 let btnFuego 
 let btnAgua 
 let btnTierra 
+let botones =[]
 let vidasJugador =3
 let vidaspc =3
 
@@ -181,21 +182,11 @@ function obtenerFoto(nombreMokepon){
     return mokeponFoto
 }
 
-function selctMascotaPc(){
-    let selectAleatorio = aleatorio(0, mokepones.length -1)
-    //agregar imagen mokepon al apartado de resumen del
-    imgpc.style.width='80px'
-
-    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
-    imgpc.src=mokepones[selectAleatorio].foto
-    
-
-}
 
 function mostrarAtaques(ataques) {
     ataques.forEach((ataque) => {
         opcionDeAtaques = `
-        <button class="boton-ataque" id=${ataque.id}> ${ataque.nombre} </button>
+        <button class="boton-ataque BAtaque" id=${ataque.id}>${ataque.nombre}</button>
         `
         contenedorAtaques.innerHTML += opcionDeAtaques
     })
@@ -203,24 +194,46 @@ function mostrarAtaques(ataques) {
     btnFuego =document.getElementById('btnfuego')
     btnAgua =document.getElementById('btnagua')
     btnTierra =document.getElementById('btntierra')
+    botones=document.querySelectorAll('.BAtaque')
 
-    btnFuego.addEventListener('click', ataqueFuego)
-    btnAgua.addEventListener('click', ataqueAgua)
-    btnTierra.addEventListener('click', ataqueTierra)
+    
+    
+    
 }
 
-function ataqueFuego(){
-    ataqueJugador='FUEGO'
-    ataqueAleatorioPc()
+function secuenciaAtaque(){
+    botones.forEach((boton) =>{
+        boton.addEventListener('click',(e) => {
+            if (e.target.textContent === '🔥') {
+                ataqueJugador.push('FUEGO')
+                console.log(ataqueJugador)
+                boton.style.background='#112f58'
+            }else if (e.target.textContent === '🌊'){
+                ataqueJugador.push('AGUA')
+                console.log(ataqueJugador)
+                boton.style.background='#112f58'
+            }else{
+                ataqueJugador.push('TIERRA')
+                console.log(ataqueJugador)
+                boton.style.background='#112f58'
+            }
+        })
+    })
+}//aqui voy min
+
+function selctMascotaPc(){
+    let selectAleatorio = aleatorio(0, mokepones.length -1)
+    //agregar imagen mokepon al apartado de resumen del
+    imgpc.style.width='80px'
+
+    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
+    imgpc.src=mokepones[selectAleatorio].foto
+    secuenciaAtaque()
+    
+
 }
-function ataqueAgua(){
-    ataqueJugador='AGUA'
-    ataqueAleatorioPc()
-}
-function ataqueTierra(){
-    ataqueJugador='TIERRA'
-    ataqueAleatorioPc()
-}
+
+
 
 function ataqueAleatorioPc(){
     let ataqAleatoriopc= aleatorio(1,3)
