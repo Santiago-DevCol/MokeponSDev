@@ -24,14 +24,15 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
-let ataqueJugador =[]
-let ataqAleatorio
+let ataqueJugador = []
+let ataqAleatorio = []
 let opcionDeMokepones
 let imphipodo
 let impcapi
 let imprat
 let mokeponFoto
 let ataquesMascotaJugador
+let ataquesMokeponEnemigo
 let opcionDeAtaques
 let btnFuego 
 let btnAgua 
@@ -195,10 +196,6 @@ function mostrarAtaques(ataques) {
     btnAgua =document.getElementById('btnagua')
     btnTierra =document.getElementById('btntierra')
     botones=document.querySelectorAll('.BAtaque')
-
-    
-    
-    
 }
 
 function secuenciaAtaque(){
@@ -217,9 +214,11 @@ function secuenciaAtaque(){
                 console.log(ataqueJugador)
                 boton.style.background='#112f58'
             }
+            ataqueAleatorioPc()
         })
+        
     })
-}//aqui voy class 56 
+}
 
 function selctMascotaPc(){
     let selectAleatorio = aleatorio(0, mokepones.length -1)
@@ -228,6 +227,7 @@ function selctMascotaPc(){
 
     spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
     imgpc.src=mokepones[selectAleatorio].foto
+    ataquesMokeponEnemigo = mokepones[selectAleatorio].ataques
     secuenciaAtaque()
     
 
@@ -236,19 +236,32 @@ function selctMascotaPc(){
 
 
 function ataqueAleatorioPc(){
-    let ataqAleatoriopc= aleatorio(1,3)
-    if(ataqAleatoriopc == 1) {
-        ataqAleatorio ='FUEGO'
-    }else if(ataqAleatoriopc == 2) {
-        ataqAleatorio ='AGUA'
+    let ataqAleatoriopc= aleatorio(0,ataqueAleatorioPc.length -1)
+    
+    if(ataqAleatoriopc == 0|| ataqAleatorio==1) {
+        ataqAleatorio.push('FUEGO')
+    }else if(ataqAleatoriopc == 3|| ataqAleatorio==4) {
+        ataqAleatorio.push('AGUA')
     } else{
-        ataqAleatorio ='TIERRA'
+        ataqAleatorio.push('TIERRA')
     }
-    combate()
+    console.log(ataqAleatorio)
+    iniciarPelea()
+}
+
+function iniciarPelea() {
+    if(ataqueJugador.length === 5){
+        combate()
+    }
+    ataqAleatorio
 }
 
 function combate(){
     
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+    }//validar los ataques del jugador y del pc(for incompleto)
     
     //combate
     if(ataqueJugador == ataqAleatorio){
