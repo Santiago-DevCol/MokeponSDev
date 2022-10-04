@@ -38,6 +38,8 @@ let btnFuego
 let btnAgua 
 let btnTierra 
 let botones =[]
+let indexAtaqueJugador
+let indexAtaqueEnemigo
 let vidasJugador =3
 let vidaspc =3
 
@@ -57,6 +59,8 @@ let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5)
 let capi= new Mokepon('Capi','./images/capi.png',5)
 
 let rat= new Mokepon('Rat','./images/rat.png',5)
+
+
 
 hipodo.ataques.push(
     //objetos literarios
@@ -256,32 +260,32 @@ function iniciarPelea() {
     ataqAleatorio
 }
 
+function indexAmbosOponentes(jugador,enemigo) {
+    indexAtaqueJugador = ataqueJugador[jugador]
+    indexAtaqueEnemigo = ataqAleatorio[enemigo]
+}//Continuo obteniendo 
+
 function combate(){
     
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
-    }//validar los ataques del jugador y del pc(for incompleto)
-    
-    //combate
-    if(ataqueJugador == ataqAleatorio){
-        //alert("empate 🤦")
-        //resultadocomba='empate 🤦'
-        crearMensaje("empate 🤦")
-    }else if((ataqueJugador == 'FUEGO' && ataqAleatorio == 'TIERRA') || (ataqueJugador == 'AGUA' && ataqAleatorio == 'FUEGO') || (ataqueJugador == 'TIERRA' && ataqAleatorio == 'AGUA')){
-        //alert("Ganaste! 🎉")
-        //resultadocomba='Ganaste! 🎉'
-        crearMensaje("Ganaste! 🎉")
-        vidaspc--
-        spanVidaPc.innerHTML=vidaspc
-    }else{
-        //alert("Perdiste 😱")
-        //resultadocomba= 'Perdiste 😱'
-        crearMensaje("Perdiste 😱")
-        vidasJugador--
-        spanVidaJugador.innerHTML=vidasJugador
+    for (let index = 0; index < ataqueJugador.length; index++) {
+        if (ataqueJugador[index] === ataqAleatorio[index]){
+            indexAmbosOponentes(index,index)
+            crearMensaje("empate 🤦")
+            vidaspc--
+            spanVidaPc.innerHTML=vidaspc
+        }else if((ataqueJugador[index]==='FUEGO' && ataqAleatorio[index]==='TIERRA') || (ataqueJugador[index]==='AGUA' && ataqAleatorio[index]==='FUEGO') ||(ataqueJugador[index]==='TIERRA' && ataqAleatorio[index]==='AGUA')){
+            indexAmbosOponentes(index,index)
+            crearMensaje("Ganaste! 🎉")
+            vidaspc--
+            spanVidaPc.innerHTML=vidaspc
+        }else{
+            indexAmbosOponentes(index,index)
+            crearMensaje("Perdiste 😱")
+            vidasJugador--
+            spanVidaJugador.innerHTML=vidasJugador
+        }
     }
-    //crearMensaje()
+    
     validarVidas()
 }
 
@@ -302,8 +306,8 @@ function crearMensaje(resultado){
     let nuevoAtaqueEnemigo= document.createElement('p')
 
     seccionevent.innerHTML=resultado
-    nuevoAtaqueJugador.innerHTML=ataqueJugador
-    nuevoAtaqueEnemigo.innerHTML=ataqAleatorio
+    nuevoAtaqueJugador.innerHTML=indexAtaqueJugador
+    nuevoAtaqueEnemigo.innerHTML=indexAtaqueEnemigo
 
     //let parrafo= document.createElement('p')
     //parrafo.innerHTML= 'Tu mascota ataco con: ' + ataqueJugador +', La mascota del enemigo atacó con: ' + ataqAleatorio + ' - '+resultado
