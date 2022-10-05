@@ -40,6 +40,8 @@ let btnTierra
 let botones =[]
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let victoriasJugador=0
+let victoriasEnemigo=0
 let vidasJugador =3
 let vidaspc =3
 
@@ -209,14 +211,17 @@ function secuenciaAtaque(){
                 ataqueJugador.push('FUEGO')
                 console.log(ataqueJugador)
                 boton.style.background='#112f58'
+                boton.disabled = true
             }else if (e.target.textContent === '🌊'){
                 ataqueJugador.push('AGUA')
                 console.log(ataqueJugador)
                 boton.style.background='#112f58'
+                boton.disabled = true
             }else{
                 ataqueJugador.push('TIERRA')
                 console.log(ataqueJugador)
                 boton.style.background='#112f58'
+                boton.disabled = true
             }
             ataqueAleatorioPc()
         })
@@ -240,11 +245,11 @@ function selctMascotaPc(){
 
 
 function ataqueAleatorioPc(){
-    let ataqAleatoriopc= aleatorio(0,ataqueAleatorioPc.length -1)
+    let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
     
-    if(ataqAleatoriopc == 0|| ataqAleatorio==1) {
+    if(ataqAleatoriopc == 0 || ataqAleatoriopc == 1) {
         ataqAleatorio.push('FUEGO')
-    }else if(ataqAleatoriopc == 3|| ataqAleatorio==4) {
+    }else if(ataqAleatoriopc == 3 || ataqAleatoriopc == 4) {
         ataqAleatorio.push('AGUA')
     } else{
         ataqAleatorio.push('TIERRA')
@@ -271,29 +276,29 @@ function combate(){
         if (ataqueJugador[index] === ataqAleatorio[index]){
             indexAmbosOponentes(index,index)
             crearMensaje("empate 🤦")
-            vidaspc--
-            spanVidaPc.innerHTML=vidaspc
-        }else if((ataqueJugador[index]==='FUEGO' && ataqAleatorio[index]==='TIERRA') || (ataqueJugador[index]==='AGUA' && ataqAleatorio[index]==='FUEGO') ||(ataqueJugador[index]==='TIERRA' && ataqAleatorio[index]==='AGUA')){
+        }else if((ataqueJugador[index] === 'FUEGO' && ataqAleatorio[index] === 'TIERRA') || (ataqueJugador[index] === 'AGUA' && ataqAleatorio[index] === 'FUEGO') ||(ataqueJugador[index] === 'TIERRA' && ataqAleatorio[index] === 'AGUA')){
             indexAmbosOponentes(index,index)
             crearMensaje("Ganaste! 🎉")
-            vidaspc--
-            spanVidaPc.innerHTML=vidaspc
+            victoriasJugador++
+            spanVidaJugador.innerHTML=victoriasJugador
         }else{
             indexAmbosOponentes(index,index)
             crearMensaje("Perdiste 😱")
-            vidasJugador--
-            spanVidaJugador.innerHTML=vidasJugador
+            victoriasEnemigo++
+            spanVidaPc.innerHTML=victoriasEnemigo
         }
     }
     
-    validarVidas()
+    validarVictorias()
 }
 
-function validarVidas (){
+function validarVictorias (){
 
-    if (vidaspc == 0 ){
+    if (victoriasJugador === victoriasEnemigo){
+        crearMensajeFinal("Esto fue un empate!!" )
+    }else if(victoriasJugador > victoriasEnemigo){
         crearMensajeFinal("Felicidades Ganasete tu combate" )
-    }else if(vidasJugador == 0){
+    }else{
         crearMensajeFinal("Lastima, deja que se recupere tu mascota")
     }
 }
@@ -326,9 +331,6 @@ function crearMensajeFinal(resultadoFinal){
     parrafo.innerHTML=resultadoFinal
     seccionevent.appendChild(parrafo)
 
-    btnFuego.disabled = true
-    btnAgua.disabled = true
-    btnTierra.disabled = true
 }
 
 function reiniciarJuego(){
