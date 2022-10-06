@@ -247,14 +247,18 @@ function selctMascotaPc(){
 function ataqueAleatorioPc(){
     let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
     
-    if(ataqAleatoriopc == 0 || ataqAleatoriopc == 1) {
-        ataqAleatorio.push('FUEGO')
-    }else if(ataqAleatoriopc == 3 || ataqAleatoriopc == 4) {
-        ataqAleatorio.push('AGUA')
-    } else{
-        ataqAleatorio.push('TIERRA')
-    }
-    console.log(ataqAleatorio)
+
+    ataqAleatorio.push(ataquesMokeponEnemigo[ataqAleatoriopc].logo)
+    ataquesMokeponEnemigo.splice(ataqAleatoriopc,1)//en validación.
+
+    //if(ataqAleatoriopc == 0 || ataqAleatoriopc == 1) {
+    //    ataqAleatorio.push('FUEGO')
+    //}else if(ataqAleatoriopc == 3 || ataqAleatoriopc == 4) {
+    //    ataqAleatorio.push('AGUA')
+    //} else{
+    //    ataqAleatorio.push('TIERRA')
+    //}
+    //console.log(ataqAleatorio)
     iniciarPelea()
 }
 
