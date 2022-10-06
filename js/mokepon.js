@@ -275,30 +275,34 @@ function combate(){
     for (let index = 0; index < ataqueJugador.length; index++) {
         if (ataqueJugador[index] === ataqAleatorio[index]){
             indexAmbosOponentes(index,index)
-            crearMensaje("empate 🤦")
+            
         }else if((ataqueJugador[index] === 'FUEGO' && ataqAleatorio[index] === 'TIERRA') || (ataqueJugador[index] === 'AGUA' && ataqAleatorio[index] === 'FUEGO') ||(ataqueJugador[index] === 'TIERRA' && ataqAleatorio[index] === 'AGUA')){
             indexAmbosOponentes(index,index)
-            crearMensaje("Ganaste! 🎉")
+            
             victoriasJugador++
             spanVidaJugador.innerHTML=victoriasJugador
         }else{
             indexAmbosOponentes(index,index)
-            crearMensaje("Perdiste 😱")
+            
             victoriasEnemigo++
             spanVidaPc.innerHTML=victoriasEnemigo
         }
+        validarVictorias()
     }
     
-    validarVictorias()
+    
 }
 
 function validarVictorias (){
 
     if (victoriasJugador === victoriasEnemigo){
+        crearMensaje("empate 🤦")
         crearMensajeFinal("Esto fue un empate!!" )
     }else if(victoriasJugador > victoriasEnemigo){
+        crearMensaje("Ganaste! 🎉")
         crearMensajeFinal("Felicidades Ganasete tu combate" )
     }else{
+        crearMensaje("Perdiste 😱")
         crearMensajeFinal("Lastima, deja que se recupere tu mascota")
     }
 }
@@ -326,11 +330,10 @@ function crearMensaje(resultado){
 function crearMensajeFinal(resultadoFinal){
     
     sectionReiniciar.style.display='block'
-
+    
     let parrafo= document.createElement('p')
     parrafo.innerHTML=resultadoFinal
     seccionevent.appendChild(parrafo)
-
 }
 
 function reiniciarJuego(){
