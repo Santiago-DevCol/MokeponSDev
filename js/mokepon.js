@@ -30,13 +30,19 @@ let opcionDeMokepones
 let imphipodo
 let impcapi
 let imprat
+let imppichon
+let imppika
+let impsnake
 let mokeponFoto
 let ataquesMascotaJugador
 let ataquesMokeponEnemigo
 let opcionDeAtaques
 let btnFuego 
 let btnAgua 
-let btnTierra 
+let btnTierra
+let btnViento
+let btnTrueno
+let btnVeneno
 let botones =[]
 let indexAtaqueJugador
 let indexAtaqueEnemigo
@@ -62,7 +68,19 @@ let capi= new Mokepon('Capi','./images/capi.png',5)
 
 let rat= new Mokepon('Rat','./images/rat.png',5)
 
+let pichon=new Mokepon('Pichon','./images/pichon.png',5)
 
+let pika= new Mokepon('Pika','./images/pika.png',5) 
+
+let snake= new Mokepon('Snake','./images/serpentina.png',5)   
+
+//lista ataques - tipos
+    //🌊 AGUA
+    //🌎 TIERRA
+    //🔥 FUEGO
+    //💨 VIENTO
+    //⚡ TRUENO
+    //🤢 VENENO
 
 hipodo.ataques.push(
     //objetos literarios
@@ -91,8 +109,34 @@ rat.ataques.push(
     {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
 )
 
+pichon.ataques.push(
+    //objetos literarios
+    {nombre: '💨',id:'btnviento', titulo:'VIENTO'},
+    {nombre: '💨',id:'btnviento', titulo:'VIENTO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+)
 
-mokepones.push(hipodo, capi, rat)
+pika.ataques.push(
+    //objetos literarios
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+)
+
+rat.ataques.push(
+    //objetos literarios
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+)
+
+mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 
 
 function iniciarjuego(){
@@ -109,8 +153,11 @@ function iniciarjuego(){
         contenedorTarjetas.innerHTML += opcionDeMokepones
 
         imphipodo=document.getElementById('Hipodo') 
-        impcapi=document.getElementById('Capi') 
         imprat=document.getElementById('Rat') 
+        impcapi=document.getElementById('Capi')
+        imppichon=document.getElementById('Pichon')
+        imppika=document.getElementById('Pika')
+        impsnake=document.getElementById('Snake')
     })
 
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
@@ -126,6 +173,7 @@ function selctMascotaPl(){
     sectionMascota.style.display ='none'
     sectionAtaques.style.display ='flex'
     imgPl.style.width='80px'
+
     
     if (imphipodo.checked){
         // alert('Seleccionaste a Hipodo')
@@ -146,9 +194,26 @@ function selctMascotaPl(){
         //agregar imagen mokepon al apartado de resumen del
         imgPl.src= obtenerFoto(imprat.id)
         ataquesMascotaJugador = imprat.id
-    }else {
-        //alert('Debes seleccionar una mascota 😅')
-        //location.reload()
+    }else if (imppichon.checked){
+        //alert('Seleccionaste a rat')
+        spnmascotapl.innerHTML=imppichon.id
+        //agregar imagen mokepon al apartado de resumen del
+        imgPl.src= obtenerFoto(imppichon.id)
+        ataquesMascotaJugador = imppichon.id
+    }else if (imppika.checked){
+        //alert('Seleccionaste a rat')
+        spnmascotapl.innerHTML=imppika.id
+        //agregar imagen mokepon al apartado de resumen del
+        imgPl.src= obtenerFoto(imppika.id)
+        ataquesMascotaJugador = imppika.id
+    }else if (impsnake.checked){
+        //alert('Seleccionaste a rat')
+        spnmascotapl.innerHTML=impsnake.id
+        //agregar imagen mokepon al apartado de resumen del
+        imgPl.src= obtenerFoto(impsnake.id)
+        ataquesMascotaJugador = impsnake.id
+    }
+    else {
         swal.fire({
             title:"Debes seleccionar una mascota 😅",
             icon:'warning',
@@ -161,8 +226,7 @@ function selctMascotaPl(){
             confirmButtonColor:'#3AB4F2'
         }).then(function(){
             location.reload()
-        })
-        
+        })   
     }
 
     extraerAtaques(ataquesMascotaJugador)
@@ -201,6 +265,7 @@ function mostrarAtaques(ataques) {
     btnFuego =document.getElementById('btnfuego')
     btnAgua =document.getElementById('btnagua')
     btnTierra =document.getElementById('btntierra')
+    btnViento =document.getElementById('btnviento')
     botones=document.querySelectorAll('.BAtaque')
 }
 
