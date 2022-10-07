@@ -66,29 +66,29 @@ let rat= new Mokepon('Rat','./images/rat.png',5)
 
 hipodo.ataques.push(
     //objetos literarios
-    {nombre: '🌊',id:'btnagua'},
-    {nombre: '🌊',id:'btnagua'},
-    {nombre: '🌊',id:'btnagua'},
-    {nombre: '🌎',id:'btntierra'},
-    {nombre: '🔥',id:'btnfuego'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
 )
 
 capi.ataques.push(
     //objetos literarios
-    {nombre: '🌎',id:'btntierra'},
-    {nombre: '🌎',id:'btntierra'},
-    {nombre: '🌎',id:'btntierra'},
-    {nombre: '🌊',id:'btnagua'},
-    {nombre: '🔥',id:'btnfuego'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
 )
 
 rat.ataques.push(
     //objetos literarios
-    {nombre: '🔥',id:'btnfuego'},
-    {nombre: '🔥',id:'btnfuego'},
-    {nombre: '🔥',id:'btnfuego'},
-    {nombre: '🌊',id:'btnagua'},
-    {nombre: '🌎',id:'btntierra'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
 )
 
 
@@ -209,17 +209,17 @@ function secuenciaAtaque(){
         boton.addEventListener('click',(e) => {
             if (e.target.textContent === '🔥') {
                 ataqueJugador.push('FUEGO')
-                console.log(ataqueJugador)
+                //console.log(ataqueJugador)
                 boton.style.background='#112f58'
                 boton.disabled = true
             }else if (e.target.textContent === '🌊'){
                 ataqueJugador.push('AGUA')
-                console.log(ataqueJugador)
+                //console.log(ataqueJugador)
                 boton.style.background='#112f58'
                 boton.disabled = true
             }else{
                 ataqueJugador.push('TIERRA')
-                console.log(ataqueJugador)
+                //console.log(ataqueJugador)
                 boton.style.background='#112f58'
                 boton.disabled = true
             }
@@ -247,17 +247,8 @@ function selctMascotaPc(){
 function ataqueAleatorioPc(){
     let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
     
+    ataqAleatorio.push(ataquesMokeponEnemigo[ataqAleatoriopc].titulo)
 
-    ataqAleatorio.push(ataquesMokeponEnemigo[ataqAleatoriopc].logo)
-    ataquesMokeponEnemigo.splice(ataqAleatoriopc,1)//en validación.
-
-    //if(ataqAleatoriopc == 0 || ataqAleatoriopc == 1) {
-    //    ataqAleatorio.push('FUEGO')
-    //}else if(ataqAleatoriopc == 3 || ataqAleatoriopc == 4) {
-    //    ataqAleatorio.push('AGUA')
-    //} else{
-    //    ataqAleatorio.push('TIERRA')
-    //}
     //console.log(ataqAleatorio)
     iniciarPelea()
 }
