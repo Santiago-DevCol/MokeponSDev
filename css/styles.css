@@ -25,9 +25,19 @@ body{
     font-size:24px;
 }
 
+.tarjetas{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content: center;
+}
 
-
-.tarjetas, .tarjetas-ataques{
+.tarjetas-ataques{
     display: flex;
     gap:10px
 }
@@ -60,6 +70,8 @@ body{
 }
 .tarjeta-de-mokepon img:hover {
     animation: bouncel .5s alternate infinite ease-in;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 .tarjeta-de-mokepon img{
     width: 80PX;

@@ -78,9 +78,6 @@ let snake= new Mokepon('Snake','./images/serpentina.png',5)
     //🌊 AGUA
     //🌎 TIERRA
     //🔥 FUEGO
-    //💨 VIENTO
-    //⚡ TRUENO
-    //🤢 VENENO
 
 hipodo.ataques.push(
     //objetos literarios
@@ -108,32 +105,32 @@ rat.ataques.push(
     {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
     {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
 )
-
+// ASIGNAR ORDEN DE ATAQUES A POKES NUEVOS
 pichon.ataques.push(
     //objetos literarios
-    {nombre: '💨',id:'btnviento', titulo:'VIENTO'},
-    {nombre: '💨',id:'btnviento', titulo:'VIENTO'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
     {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
     {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
 )
 
 pika.ataques.push(
     //objetos literarios
-    {nombre: '⚡',id:'btntrueno', titulo:'TRUENO'},
-    {nombre: '⚡',id:'btntrueno', titulo:'TRUENO'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
     {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '💨',id:'btnviento', titulo:'VIENTO'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
 )
 
 snake.ataques.push(
     //objetos literarios
-    {nombre: '🤢',id:'btnveneno', titulo:'VENENO'},
-    {nombre: '🤢',id:'btnveneno', titulo:'VENENO'},
     {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
     {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
 )
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
@@ -264,9 +261,6 @@ function mostrarAtaques(ataques) {
     btnFuego =document.getElementById('btnfuego')
     btnAgua =document.getElementById('btnagua')
     btnTierra =document.getElementById('btntierra')
-    btnViento =document.getElementById('btnviento')
-    btnTrueno =document.getElementById('btntrueno')
-    btnVeneno =document.getElementById('btnveneno')
     botones=document.querySelectorAll('.BAtaque')
 }
 
@@ -283,24 +277,9 @@ function secuenciaAtaque(){
                 console.log(ataqueJugador)
                 boton.style.background='#112f58'
                 boton.disabled = true
-            }else if (e.target.textContent === '🌎') {
+            }else{
                 ataqueJugador.push('TIERRA')
-                console.log(ataqueJugador)
-                boton.style.background='#112f58'
-                boton.disabled = true
-            }else if (e.target.textContent ==='💨') {
-                ataqueJugador.push('VIENTO')
-                console.log(ataqueJugador)
-                boton.style.background='#112f58'
-                boton.disabled = true
-            }else if (e.target.textContent === '⚡'){
-                ataqueJugador.push('TRUENO')
-                console.log(ataqueJugador)
-                boton.style.background='#112f58'
-                boton.disabled = true
-            }else {
-                ataqueJugador.push('VENENO')
-                console.log(ataqueJugador)
+                //console.log(ataqueJugador)
                 boton.style.background='#112f58'
                 boton.disabled = true
             }
@@ -336,7 +315,7 @@ function ataqueAleatorioPc(){
 }
 
 function iniciarPelea() {
-    if(ataqueJugador.length === 1){
+    if(ataqueJugador.length === 5){
         combate()
     }
     ataqAleatorio
@@ -353,24 +332,12 @@ function combate(){
         if (ataqueJugador[index] === ataqAleatorio[index]){
             indexAmbosOponentes(index,index)
             
-        }else if((ataqueJugador[index] === 'FUEGO' && ataqAleatorio[index] === 'TIERRA') || (ataqueJugador[index] === 'VIENTO' && ataqAleatorio[index] === 'FUEGO') || (ataqueJugador[index] === 'TRUENO' && ataqAleatorio[index] === 'AGUA') ){
+        }else if((ataqueJugador[index] === 'FUEGO' && ataqAleatorio[index] === 'TIERRA') || (ataqueJugador[index] === 'AGUA' && ataqAleatorio[index] === 'FUEGO') ||(ataqueJugador[index] === 'TIERRA' && ataqAleatorio[index] === 'AGUA')){
             indexAmbosOponentes(index,index)
             
             victoriasJugador++
             spanVidaJugador.innerHTML=victoriasJugador
-        }else if((ataqueJugador[index] === 'AGUA' && ataqAleatorio[index] === 'FUEGO') || (ataqueJugador[index] === 'AGUA' && ataqAleatorio[index] === 'VENENO')){
-            indexAmbosOponentes(index,index)
-            
-            victoriasJugador++
-            spanVidaJugador.innerHTML=victoriasJugador
-        }else if((ataqueJugador[index] === 'TIERRA' && ataqAleatorio[index] === 'AGUA') || (ataqueJugador[index] === 'TIERRA' && ataqAleatorio[index] === 'TRUENO')){
-            indexAmbosOponentes(index,index)
-            
-            victoriasJugador++
-            spanVidaJugador.innerHTML=victoriasJugador
-        }
-            
-        
+        }     
         
         else{
             indexAmbosOponentes(index,index)
