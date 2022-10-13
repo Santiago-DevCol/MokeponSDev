@@ -360,7 +360,7 @@ function ataqueAleatorioPc(){
 
 function iniciarPelea() {
     if(ataqueJugador.length === 5){
-        botones.disabled = true// validar donde puedo deshabilidar el boton de ataques
+        
         combate()
     }
     
@@ -431,7 +431,7 @@ function crearMensaje(resultado){
 }
 
 function crearMensajeFinal(resultadoFinal){
-    
+    contenedorAtaques.style.display='none'
     sectionReiniciar.style.display='block'
     
     let parrafo= document.createElement('p')
