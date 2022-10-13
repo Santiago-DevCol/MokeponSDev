@@ -43,9 +43,12 @@ let btnTierra
 let btnViento
 let btnTrueno
 let btnVeneno
+let tipoJugador
+let tipoEnemigo
 let botones =[]
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let selectAleatorio
 let victoriasJugador=0
 let victoriasEnemigo=0
 let vidasJugador =3
@@ -53,26 +56,27 @@ let vidaspc =3
 
 class Mokepon{
     //objetos instancia
-    constructor(nombre,foto,vida){
+    constructor(nombre,foto,vida,tipo){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.tipo = tipo
     }
 
 }
 
-let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5)
+let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊')
 
-let capi= new Mokepon('Capi','./images/capi.png',5)
+let capi= new Mokepon('Capi','./images/capi.png',5,'🌎')
 
-let rat= new Mokepon('Rat','./images/rat.png',5)
+let rat= new Mokepon('Rat','./images/rat.png',5,'🔥')
 
-let pichon=new Mokepon('Pichon','./images/pichon.png',5)
+let pichon=new Mokepon('Pichon','./images/pichon.png',5,'🌊')
 
-let pika= new Mokepon('Pika','./images/pika.png',5) 
+let pika= new Mokepon('Pika','./images/pika.png',5,'🌎')
 
-let snake= new Mokepon('Snake','./images/serpentina.png',5)   
+let snake= new Mokepon('Snake','./images/serpentina.png',5,'🔥')
 
 //lista ataques - tipos
     //🌊 AGUA
@@ -81,56 +85,56 @@ let snake= new Mokepon('Snake','./images/serpentina.png',5)
 
 hipodo.ataques.push(
     //objetos literarios
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
 )
 
 capi.ataques.push(
     //objetos literarios
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
 )
 
 rat.ataques.push(
     //objetos literarios
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
 )
 // ASIGNAR ORDEN DE ATAQUES A POKES NUEVOS
 pichon.ataques.push(
     //objetos literarios
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
 )
 
 pika.ataques.push(
     //objetos literarios
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
 )
 
 snake.ataques.push(
     //objetos literarios
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🌊',id:'btnagua', titulo:'AGUA'},
-    {nombre: '🌎',id:'btntierra', titulo:'TIERRA'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
-    {nombre: '🔥',id:'btnfuego', titulo:'FUEGO'},
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
 )
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
@@ -143,7 +147,10 @@ function iniciarjuego(){
         opcionDeMokepones = `
         <input id=${Mokepon.nombre} type="radio" name="mascota"  />
         <label class="tarjeta-de-mokepon" for=${Mokepon.nombre}>
-            <P>${Mokepon.nombre}</P>
+ 
+        <P> ${Mokepon.nombre}
+            Tipo: ${Mokepon.tipo}
+        </P>
             <img src=${Mokepon.foto} alt=${Mokepon.nombre}>
         </label>
         `
@@ -159,7 +166,7 @@ function iniciarjuego(){
 
     btnsSelectMascotaPl.addEventListener('click', selctMascotaPl)
 
-//al comentar la linea 14 corregi que no se ejecutara la funcion de ataque aleatorio al inicar juego ya que traia mensaje con campo indefinido
+//al comentar la linea corregi que no se ejecutara la funcion de ataque aleatorio al inicar juego ya que traia mensaje con campo indefinido
    // ataqueAleatorioPc()
     btnReiniciar.addEventListener('click',reiniciarJuego)
 }
@@ -224,19 +231,49 @@ function selctMascotaPl(){
             location.reload()
         })   
     }
-
+    selectAleatorio = aleatorio(0, mokepones.length -1)
+    tipoEnemigo =mokepones[selectAleatorio].tipo
     extraerAtaques(ataquesMascotaJugador)
     selctMascotaPc()
 }
+
+function extraerTipo(){
+    if (tipoJugador == '🔥' && tipoEnemigo == '🌎'){
+        ataques.push(tipoJugador)
+    }else if(tipoJugador == '🌊' && tipoEnemigo == '🔥'){
+        ataques.push(tipoJugador)
+    } else if(tipoJugador == '🌱' && tipoEnemigo == '🌊'){
+        ataques.push(tipoJugador)
+    }else{
+        ataques.push(tipoEnemigo)
+    }
+}
+
 
 function extraerAtaques(ataquesMascotaJugador){
     let ataques
     for (let i = 0; i < mokepones.length; i++) {
         if (ataquesMascotaJugador === mokepones[i].nombre) {
-            ataques =  mokepones[i].ataques
+            tipoJugador = mokepones[i].tipo
+
+            if (tipoJugador == '🔥' && tipoEnemigo == '🌎') {
+                mokepones[i].ataques.push(mokepones[i].ataques[0])
+            }else if (tipoJugador == '🌊' && tipoEnemigo == '🔥'){
+                mokepones[i].ataques.push(mokepones[i].ataques[0])
+            }else if (tipoJugador == '🌎' && tipoEnemigo == '🔥'){
+                mokepones[i].ataques.push(mokepones[i].ataques[0])
+            }else if(tipoJugador === tipoEnemigo ){
+                
+            }
+            else{
+                mokepones[selectAleatorio].ataques.push(mokepones[selectAleatorio].ataques[0])
+            }
+            ataques = mokepones[i].ataques
         }
     }
-        mostrarAtaques(ataques)
+    //console.log(tipoJugador)
+    //console.log(ataques)
+    mostrarAtaques(ataques)
 }
 
 function obtenerFoto(nombreMokepon){
@@ -251,6 +288,7 @@ function obtenerFoto(nombreMokepon){
 
 
 function mostrarAtaques(ataques) {
+    
     ataques.forEach((ataque) => {
         opcionDeAtaques = `
         <button class="boton-ataque BAtaque" id=${ataque.id}>${ataque.nombre}</button>
@@ -292,7 +330,6 @@ function secuenciaAtaque(){
 }
 
 function selctMascotaPc(){
-    let selectAleatorio = aleatorio(0, mokepones.length -1)
     //agregar imagen mokepon al apartado de resumen del
     imgpc.style.width='80px'
 
@@ -309,16 +346,24 @@ function selctMascotaPc(){
 function ataqueAleatorioPc(){
     let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
     
-    ataqAleatorio.push(ataquesMokeponEnemigo[ataqAleatoriopc].titulo)
+    if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🔥') {
+        ataqAleatorio.push('FUEGO')
+    }else if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🌊'){
+        ataqAleatorio.push('AGUA')
+    }else{
+        ataqAleatorio.push('TIERRA')
+    }
+    ataquesMokeponEnemigo.splice(ataqAleatoriopc,1)
     console.log(ataqAleatorio)
     iniciarPelea()
 }
 
 function iniciarPelea() {
     if(ataqueJugador.length === 5){
+        botones.disabled = true// validar donde puedo deshabilidar el boton de ataques
         combate()
     }
-    ataqAleatorio
+    
 }
 
 function indexAmbosOponentes(jugador,enemigo) {
