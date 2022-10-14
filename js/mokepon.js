@@ -5,7 +5,7 @@ const sectionAtaques=document.getElementById('seleccionar-ataque')
 const sectionReiniciar=document.getElementById('reiniciar')
 const btnsSelectMascotaPl = document.getElementById('btnselectmascota')
 const btnReiniciar =document.getElementById('btnreiniciar')
-
+const tituEligeAtaque = document.getElementById('tituEligeAtaque')
 // variables de la funcion seleccionar mascotaPl()
 const sectionMascota=document.getElementById('seleccionar-mascota')
 const spnmascotapl=document.getElementById('nommacotapl')
@@ -21,6 +21,9 @@ const spanVidaPc =document.getElementById('vidapc')
 const seccionevent = document.getElementById('resultado')
 const ataquesJugador = document.getElementById('ataques-jugador')
 const ataquesEnemigo = document.getElementById('ataques-enemigo')
+
+const seccionVerMapa =document.getElementById('ver-mapa')
+const mapa =document.getElementById('mapa')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
@@ -53,6 +56,7 @@ let victoriasJugador=0
 let victoriasEnemigo=0
 let vidasJugador =3
 let vidaspc =3
+let lienzo = mapa.getContext('2d')
 
 class Mokepon{
     //objetos instancia
@@ -143,6 +147,7 @@ mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 function iniciarjuego(){
     sectionAtaques.style.display ='none'
     sectionReiniciar.style.display ='none'
+    seccionVerMapa.style.display='none'
     mokepones.forEach((Mokepon) => {
         opcionDeMokepones = `
         <input id=${Mokepon.nombre} type="radio" name="mascota"  />
@@ -175,7 +180,12 @@ function selctMascotaPl(){
     
     
     sectionMascota.style.display ='none'
-    sectionAtaques.style.display ='flex'
+    //sectionAtaques.style.display ='flex'
+    seccionVerMapa.style.display='flex'
+    let imagenDeCapi= new Image()
+    imagenDeCapi.src =capi.foto
+    lienzo.drawImage(imagenDeCapi,20, 40, 100, 100)
+
     imgPl.style.width='80px'
 
     
@@ -260,7 +270,7 @@ function extraerAtaques(ataquesMascotaJugador){
                 mokepones[i].ataques.push(mokepones[i].ataques[0])
             }else if (tipoJugador == '🌊' && tipoEnemigo == '🔥'){
                 mokepones[i].ataques.push(mokepones[i].ataques[0])
-            }else if (tipoJugador == '🌎' && tipoEnemigo == '🔥'){
+            }else if (tipoJugador == '🌎' && tipoEnemigo == '🌊'){
                 mokepones[i].ataques.push(mokepones[i].ataques[0])
             }else if(tipoJugador === tipoEnemigo ){
                 
@@ -433,6 +443,7 @@ function crearMensaje(resultado){
 function crearMensajeFinal(resultadoFinal){
     contenedorAtaques.style.display='none'
     sectionReiniciar.style.display='block'
+    tituEligeAtaque.innerHTML="¡RESULTADO!"
     
     let parrafo= document.createElement('p')
     parrafo.innerHTML=resultadoFinal
