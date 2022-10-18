@@ -66,6 +66,12 @@ class Mokepon{
         this.vida = vida
         this.ataques = []
         this.tipo = tipo
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
     }
 
 }
@@ -182,9 +188,13 @@ function selctMascotaPl(){
     sectionMascota.style.display ='none'
     //sectionAtaques.style.display ='flex'
     seccionVerMapa.style.display='flex'
-    let imagenDeCapi= new Image()
-    imagenDeCapi.src =capi.foto
-    lienzo.drawImage(imagenDeCapi,20, 40, 100, 100)
+    lienzo.drawImage(
+        imagenDeCapi,
+        20,
+        40, 
+        100, 
+        100
+    )
 
     imgPl.style.width='80px'
 
