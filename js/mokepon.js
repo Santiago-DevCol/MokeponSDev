@@ -37,6 +37,7 @@ let imppichon
 let imppika
 let impsnake
 let mokeponFoto
+
 let ataquesMascotaJugador
 let ataquesMokeponEnemigo
 let opcionDeAtaques
@@ -58,6 +59,8 @@ let vidasJugador =3
 let vidaspc =3
 let lienzo = mapa.getContext('2d')
 let intervalo
+let mapaBackground = new Image()
+mapaBackground.src = './images/mokemap.png' 
 
 class Mokepon{
     //objetos instancia
@@ -191,7 +194,7 @@ function selctMascotaPl(){
     sectionMascota.style.display ='none'
     //sectionAtaques.style.display ='flex'
     seccionVerMapa.style.display='flex'
-    intervalo =setInterval(pintarPersonaje, 50)
+    iniciarMapa()
 
     imgPl.style.width='80px'
 
@@ -465,11 +468,19 @@ function aleatorio(min,max){
     return Math.floor(Math.random() * (max - min + 1)+min) 
 }
 
-function pintarPersonaje(){
+function pintarCanvas(){
+    
     capi.x = capi.x + capi.velocidadX
     capi.y = capi.y + capi.velocidadY
 
     lienzo.clearRect(0,0,mapa.width, mapa.height)
+    lienzo.drawImage(
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height
+    )
     lienzo.drawImage(
         capi.mapaFoto,
         capi.x,
@@ -483,24 +494,65 @@ function pintarPersonaje(){
 
 
 function moverDerecha(){
-    capi.velocidadX = 5
+    const miMokepon =obtenerObjetoMascota
+    miMokepon.velocidadX = 5
 }
 
 function moverIzquierda(){
-    capi.velocidadX = -5
+    const miMokepon =obtenerObjetoMascota
+    miMokepon.velocidadX = -5
 }
 
 function moverArriba(){
-    capi.velocidadY =-5
+    const miMokepon =obtenerObjetoMascota
+    miMokepon.velocidadY =-5
 }
 
 function moverAbajo(){
-    capi.velocidadY = 5
+    const miMokepon =obtenerObjetoMascota
+    miMokepon.velocidadY = 5
 }
 
 function detenerMovimiento(){
-    capi.velocidadX = 0
-    capi.velocidadY = 0
+    const miMokepon =obtenerObjetoMascota
+    miMokepon.velocidadX = 0
+    miMokepon.velocidadY = 0
+}
+
+function sePresionoUnaTecla(event){
+    switch (event.key) {
+        case 'ArrowUp': case 'w':
+            moverArriba()
+            break
+        case 'ArrowDown': case 's':
+            moverAbajo()
+            break
+        case 'ArrowLeft': case 'a':
+            moverIzquierda()
+            break
+        case 'ArrowRight': case 'd':
+            moverDerecha()
+            break
+        default:
+            break
+    }
+}
+
+function iniciarMapa(){
+    mapa.width= 320
+    mapa.height= 240
+    intervalo =setInterval(pintarCanvas, 50)
+    window.addEventListener('keydown', sePresionoUnaTecla)
+    window.addEventListener('keyup',detenerMovimiento)
+}
+
+function obtenerObjetoMascota(){
+    for (let i = 0; i < mokepones.length; i++) {
+        if (ataquesMascotaJugador === mokepones[i].nombre) {
+            return mokepones[i]
+        }
+        
+    }
 }
 
 window.addEventListener('load',iniciarjuego)
