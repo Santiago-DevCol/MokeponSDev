@@ -57,6 +57,7 @@ let victoriasEnemigo=0
 let vidasJugador =3
 let vidaspc =3
 let lienzo = mapa.getContext('2d')
+let intervalo
 
 class Mokepon{
     //objetos instancia
@@ -72,6 +73,8 @@ class Mokepon{
         this.alto = 80
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 
 }
@@ -188,13 +191,7 @@ function selctMascotaPl(){
     sectionMascota.style.display ='none'
     //sectionAtaques.style.display ='flex'
     seccionVerMapa.style.display='flex'
-    lienzo.drawImage(
-        imagenDeCapi,
-        20,
-        40, 
-        100, 
-        100
-    )
+    intervalo =setInterval(pintarPersonaje, 50)
 
     imgPl.style.width='80px'
 
@@ -466,6 +463,44 @@ function reiniciarJuego(){
 
 function aleatorio(min,max){
     return Math.floor(Math.random() * (max - min + 1)+min) 
+}
+
+function pintarPersonaje(){
+    capi.x = capi.x + capi.velocidadX
+    capi.y = capi.y + capi.velocidadY
+
+    lienzo.clearRect(0,0,mapa.width, mapa.height)
+    lienzo.drawImage(
+        capi.mapaFoto,
+        capi.x,
+        capi.y,
+        capi.ancho, 
+        capi.alto 
+    )
+}
+
+
+
+
+function moverDerecha(){
+    capi.velocidadX = 5
+}
+
+function moverIzquierda(){
+    capi.velocidadX = -5
+}
+
+function moverArriba(){
+    capi.velocidadY =-5
+}
+
+function moverAbajo(){
+    capi.velocidadY = 5
+}
+
+function detenerMovimiento(){
+    capi.velocidadX = 0
+    capi.velocidadY = 0
 }
 
 window.addEventListener('load',iniciarjuego)
