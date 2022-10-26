@@ -37,7 +37,7 @@ let imppichon
 let imppika
 let impsnake
 let mokeponFoto
-
+let mascotaDeJugadorObjeto
 let ataquesMascotaJugador
 let ataquesMokeponEnemigo
 let opcionDeAtaques
@@ -64,35 +64,55 @@ mapaBackground.src = './images/mokemap.png'
 
 class Mokepon{
     //objetos instancia
-    constructor(nombre,foto,vida,tipo){
+    constructor(nombre,foto,vida,tipo,fotoMapa,x=10,y=10){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
         this.tipo = tipo
-        this.x = 20
-        this.y = 30
+        this.x = x
+        this.y = y
         this.ancho = 80
         this.alto = 80
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
-
+    pintarMokepon(){
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho, 
+            this.alto 
+        )
+    }
 }
 
-let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊')
+let hipodo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png')
 
-let capi= new Mokepon('Capi','./images/capi.png',5,'🌎')
+let capi= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png')
 
-let rat= new Mokepon('Rat','./images/rat.png',5,'🔥')
+let rat= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png')
 
-let pichon=new Mokepon('Pichon','./images/pichon.png',5,'🌊')
+let pichon=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png')
 
-let pika= new Mokepon('Pika','./images/pika.png',5,'🌎')
+let pika= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
 
-let snake= new Mokepon('Snake','./images/serpentina.png',5,'🔥')
+let snake= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png')
+
+let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',60,240)
+
+let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',280,70)
+
+let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',30,120)
+
+let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',314,240)
+
+let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png',120,14)
+
+let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',200,150)
 
 //lista ataques - tipos
     //🌊 AGUA
@@ -193,9 +213,6 @@ function selctMascotaPl(){
     
     sectionMascota.style.display ='none'
     //sectionAtaques.style.display ='flex'
-    seccionVerMapa.style.display='flex'
-    iniciarMapa()
-
     imgPl.style.width='80px'
 
     
@@ -249,8 +266,10 @@ function selctMascotaPl(){
             confirmButtonColor:'#3AB4F2'
         }).then(function(){
             location.reload()
-        })   
+        })
     }
+    seccionVerMapa.style.display='flex'
+    iniciarMapa()
     selectAleatorio = aleatorio(0, mokepones.length -1)
     tipoEnemigo =mokepones[selectAleatorio].tipo
     extraerAtaques(ataquesMascotaJugador)
@@ -470,8 +489,8 @@ function aleatorio(min,max){
 
 function pintarCanvas(){
     
-    capi.x = capi.x + capi.velocidadX
-    capi.y = capi.y + capi.velocidadY
+    mascotaDeJugadorObjeto.x = mascotaDeJugadorObjeto.x + mascotaDeJugadorObjeto.velocidadX
+    mascotaDeJugadorObjeto.y = mascotaDeJugadorObjeto.y + mascotaDeJugadorObjeto.velocidadY
 
     lienzo.clearRect(0,0,mapa.width, mapa.height)
     lienzo.drawImage(
@@ -481,42 +500,37 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
     )
-    lienzo.drawImage(
-        capi.mapaFoto,
-        capi.x,
-        capi.y,
-        capi.ancho, 
-        capi.alto 
-    )
+    mascotaDeJugadorObjeto.pintarMokepon()
+    hipodoEnemigo.pintarMokepon()
+    capiEnemigo.pintarMokepon()
+    ratEnemigo.pintarMokepon()
+    pichonEnemigo.pintarMokepon()
+    pikaEnemigo.pintarMokepon()
+    snakeEnemigo.pintarMokepon()
 }
 
 
 
 
 function moverDerecha(){
-    const miMokepon =obtenerObjetoMascota
-    miMokepon.velocidadX = 5
+    mascotaDeJugadorObjeto.velocidadX = 5
 }
 
 function moverIzquierda(){
-    const miMokepon =obtenerObjetoMascota
-    miMokepon.velocidadX = -5
+    mascotaDeJugadorObjeto.velocidadX = -5
 }
 
 function moverArriba(){
-    const miMokepon =obtenerObjetoMascota
-    miMokepon.velocidadY =-5
+    mascotaDeJugadorObjeto.velocidadY =-5
 }
 
 function moverAbajo(){
-    const miMokepon =obtenerObjetoMascota
-    miMokepon.velocidadY = 5
+    mascotaDeJugadorObjeto.velocidadY = 5
 }
 
 function detenerMovimiento(){
-    const miMokepon =obtenerObjetoMascota
-    miMokepon.velocidadX = 0
-    miMokepon.velocidadY = 0
+    mascotaDeJugadorObjeto.velocidadX = 0
+    mascotaDeJugadorObjeto.velocidadY = 0
 }
 
 function sePresionoUnaTecla(event){
@@ -539,8 +553,10 @@ function sePresionoUnaTecla(event){
 }
 
 function iniciarMapa(){
-    mapa.width= 320
-    mapa.height= 240
+    mapa.width= 420
+    mapa.height= 340
+    mascotaDeJugadorObjeto=obtenerObjetoMascota(ataquesMascotaJugador)
+    console.log(mascotaDeJugadorObjeto, ataquesMascotaJugador);
     intervalo =setInterval(pintarCanvas, 50)
     window.addEventListener('keydown', sePresionoUnaTecla)
     window.addEventListener('keyup',detenerMovimiento)
