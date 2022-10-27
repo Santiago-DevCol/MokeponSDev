@@ -24,6 +24,9 @@ const ataquesEnemigo = document.getElementById('ataques-enemigo')
 
 const seccionVerMapa =document.getElementById('ver-mapa')
 const mapa =document.getElementById('mapa')
+const seccionModoDeJuego =document.getElementById('modo-Juego')
+const btnModoHistoria = document.getElementById('btnModeHistoria')
+const btnModoCombateRapido = document.getElementById('btnModeCombateRapido')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
@@ -175,8 +178,20 @@ snake.ataques.push(
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 
+function modoDeJuego(){
+    sectionMascota.style.display='none'
+    sectionAtaques.style.display ='none'
+    sectionReiniciar.style.display ='none'
+    seccionVerMapa.style.display='none'
+
+    btnModoCombateRapido.addEventListener('click',iniciarjuego)
+    btnModoHistoria.addEventListener('click',iniciarjuego)
+    
+}
 
 function iniciarjuego(){
+    seccionModoDeJuego.style.display ='none'
+    sectionMascota.style.display='flex'
     sectionAtaques.style.display ='none'
     sectionReiniciar.style.display ='none'
     seccionVerMapa.style.display='none'
@@ -184,7 +199,7 @@ function iniciarjuego(){
         opcionDeMokepones = `
         <input id=${Mokepon.nombre} type="radio" name="mascota"  />
         <label class="tarjeta-de-mokepon" for=${Mokepon.nombre}>
- 
+
         <P> ${Mokepon.nombre}
             Tipo: ${Mokepon.tipo}
         </P>
@@ -212,7 +227,6 @@ function selctMascotaPl(){
     
     
     sectionMascota.style.display ='none'
-    //sectionAtaques.style.display ='flex'
     imgPl.style.width='80px'
 
     
@@ -268,12 +282,13 @@ function selctMascotaPl(){
             location.reload()
         })
     }
-    seccionVerMapa.style.display='flex'
-    iniciarMapa()
+    //seccionVerMapa.style.display='flex'
+    //iniciarMapa()
     selectAleatorio = aleatorio(0, mokepones.length -1)
     tipoEnemigo =mokepones[selectAleatorio].tipo
     extraerAtaques(ataquesMascotaJugador)
     selctMascotaPc()
+    sectionAtaques.style.display ='flex'
 }
 
 function extraerTipo(){
@@ -379,6 +394,17 @@ function selctMascotaPc(){
     
 
 }
+//function selctMascotaPc(enemigo){
+//    //agregar imagen mokepon al apartado de resumen del
+//    imgpc.style.width='80px'
+////
+//    spnmascotapc.innerHTML= enemigo.nombre
+//    imgpc.src=enemigo.foto
+//    ataquesMokeponEnemigo = enemigo.ataques
+//    secuenciaAtaque()
+//    
+////
+//}
 
 
 
@@ -507,6 +533,15 @@ function pintarCanvas(){
     pichonEnemigo.pintarMokepon()
     pikaEnemigo.pintarMokepon()
     snakeEnemigo.pintarMokepon()
+
+    if (mascotaDeJugadorObjeto.velocidadX !== 0 || mascotaDeJugadorObjeto.velocidadY !== 0) {
+        revisarColision(hipodoEnemigo)
+        revisarColision(capiEnemigo)
+        revisarColision(ratEnemigo)
+        revisarColision(pichonEnemigo)
+        revisarColision(pikaEnemigo)
+        revisarColision(snakeEnemigo)
+    }
 }
 
 
@@ -571,4 +606,29 @@ function obtenerObjetoMascota(){
     }
 }
 
-window.addEventListener('load',iniciarjuego)
+function revisarColision(enemigo){
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const derechaEnemigo = enemigo.x + enemigo.ancho  
+    const izquierdaEnemigo= enemigo.x
+
+    const arribaMascota = mascotaDeJugadorObjeto.y
+    const abajoMascota = mascotaDeJugadorObjeto.y + mascotaDeJugadorObjeto.alto
+    const derechaMascota = mascotaDeJugadorObjeto.x + mascotaDeJugadorObjeto.ancho  
+    const izquierdaMascota= mascotaDeJugadorObjeto.x
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+        ) {
+        return
+    }
+    detenerMovimiento()
+    //alert("Hay colision con "+ enemigo.nombre)
+    seccionVerMapa.style.display = 'none'
+    sectionAtaques.style.display ='flex'
+    selctMascotaPc(enemigo)
+}
+
+window.addEventListener('load',modoDeJuego)

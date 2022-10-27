@@ -8,7 +8,7 @@
 body{
     background-color: #0078AA;
 }
-#seleccionar-mascota{
+#seleccionar-mascota, #modo-Juego{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,10 +90,10 @@ input:checked +label{
     margin: 0px 24px 0px 24px;
 }
 
-#btnselectmascota{
+#btnselectmascota,#btnModeHistoria,#btnModeCombateRapido{
     border-radius: 14px;
-    width: 110px;
-    height: 32px;
+    width: 116px;
+    height: 38px;
     padding: 7px;
     margin: 10px;
     background-color: #F2DF3A;
@@ -102,9 +102,12 @@ input:checked +label{
     transition: 0.3s;
     cursor: pointer;
     Color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#btnselectmascota:hover{
+#btnselectmascota:hover, #btnModeHistoria:hover,#btnModeCombateRapido:hover{
     background-color: #F7EC09;
     color: white;
     box-shadow: 0 12px 16px 0 RGB(0,0,0,0.24), 0 17px 50px 0 RGB(0,0,0,0.19);
