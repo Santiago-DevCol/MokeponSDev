@@ -66,7 +66,7 @@ let mapaBackground = new Image()
 mapaBackground.src = './images/mokemap.png' 
 let alturaBuscamos
 let anchoDeMapa = window.innerWidth - 20
-const anchoMaxMapa = 350
+const anchoMaxMapa = 600
 
 if (anchoDeMapa > anchoMaxMapa ) {
     anchoDeMapa = anchoMaxMapa - 20
@@ -91,15 +91,44 @@ class Mokepon{
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
+        this.bounceDirection=1
+        this.bounceInterval=8
+        this.bounceCount = 0
+
     }
-    pintarMokepon(){
+    pintarMokepon(bounce=false){
+        if ( ! bounce) {
+            lienzo.drawImage(
+                this.mapaFoto,
+                this.x,
+                this.y,
+                this.ancho, 
+                this.alto
+            )
+            return 
+        }
+        if (Math.abs(this.bounceCount)==this.bounceInterval && this.bounceDirection==1) {
+            this.ancho=this.ancho+this.bounceCount 
+            this.alto= this.alto+this.bounceCount 
+            this.bounceDirection = -1
+            this.bounceCount = 0
+        }
+        else if (Math.abs(this.bounceCount)==this.bounceInterval && this.bounceDirection==-1) {
+            this.ancho= this.ancho-this.bounceCount
+            this.alto= this.alto-this.bounceCount
+            this.bounceDirection = 1
+            this.bounceCount = 0
+            
+        }
         lienzo.drawImage(
             this.mapaFoto,
             this.x,
             this.y,
-            this.ancho, 
-            this.alto 
+            this.ancho + (this.bounceCount * this.bounceDirection), 
+            this.alto + (this.bounceCount * this.bounceDirection)
+
         )
+        this.bounceCount++
     }
 }
 
@@ -593,7 +622,7 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
     )
-    mascotaDeJugadorObjeto.pintarMokepon()
+    mascotaDeJugadorObjeto.pintarMokepon(true)
     hipodoEnemigo.pintarMokepon()
     capiEnemigo.pintarMokepon()
     ratEnemigo.pintarMokepon()
