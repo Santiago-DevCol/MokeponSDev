@@ -217,10 +217,10 @@ input:checked +label{
     justify-content: center;
 }
 
-#mapa{
+/* #mapa{
     border: 2px solid #F2DF3A;
 
-}
+} */
 
 @media (max-width:360px){
     .tarjetas, .tarjetas-ataques{

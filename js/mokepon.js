@@ -64,7 +64,17 @@ let lienzo = mapa.getContext('2d')
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './images/mokemap.png' 
+let alturaBuscamos
+let anchoDeMapa = window.innerWidth - 20
+const anchoMaxMapa = 350
 
+if (anchoDeMapa > anchoMaxMapa ) {
+    anchoDeMapa = anchoMaxMapa - 20
+}
+
+alturaBuscamos = anchoDeMapa * 600 / 800
+mapa.width = anchoDeMapa
+mapa.height = alturaBuscamos
 class Mokepon{
     //objetos instancia
     constructor(nombre,foto,vida,tipo,fotoMapa,x=10,y=10){
@@ -73,10 +83,10 @@ class Mokepon{
         this.vida = vida
         this.ataques = []
         this.tipo = tipo
-        this.x = x
-        this.y = y
         this.ancho = 80
         this.alto = 80
+        this.x = aleatorio (0,mapa.width - this.ancho)
+        this.y = aleatorio (0,mapa.height - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -105,17 +115,17 @@ let pika= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png
 
 let snake= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png')
 
-let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',60,240)
+let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
 
-let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',280,70)
+let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
 
-let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',30,120)
+let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
 
-let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',314,240)
+let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
 
-let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png',120,14)
+let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
 
-let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',200,150)
+let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
 
 //lista ataques - tipos
     //🌊 AGUA
@@ -175,22 +185,65 @@ snake.ataques.push(
     {nombre: '🔥',id:'btnfuego' },
     {nombre: '🔥',id:'btnfuego' },
 )
+hipodoEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+)
+
+capiEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
+)
+
+ratEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+)
+// ASIGNAR ORDEN DE ATAQUES A POKES NUEVOS
+pichonEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
+)
+
+pikaEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
+)
+
+snakeEnemigo.ataques.push(
+    //objetos literarios
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+)
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 
-function modoDeJuego(){
-    sectionMascota.style.display='none'
-    sectionAtaques.style.display ='none'
-    sectionReiniciar.style.display ='none'
-    seccionVerMapa.style.display='none'
-
-    btnModoCombateRapido.addEventListener('click',iniciarjuego)
-    btnModoHistoria.addEventListener('click',iniciarjuego)
-    
-}
 
 function iniciarjuego(){
-    seccionModoDeJuego.style.display ='none'
+    
     sectionMascota.style.display='flex'
     sectionAtaques.style.display ='none'
     sectionReiniciar.style.display ='none'
@@ -282,13 +335,13 @@ function selctMascotaPl(){
             location.reload()
         })
     }
-    //seccionVerMapa.style.display='flex'
-    //iniciarMapa()
+    seccionVerMapa.style.display='flex'
+    iniciarMapa()
     selectAleatorio = aleatorio(0, mokepones.length -1)
-    tipoEnemigo =mokepones[selectAleatorio].tipo
+    tipoEnemigo =mokepones.tipo
     extraerAtaques(ataquesMascotaJugador)
-    selctMascotaPc()
-    sectionAtaques.style.display ='flex'
+    //selctMascotaPc()
+    //sectionAtaques.style.display ='flex'
 }
 
 function extraerTipo(){
@@ -383,42 +436,56 @@ function secuenciaAtaque(){
     })
 }
 
-function selctMascotaPc(){
-    //agregar imagen mokepon al apartado de resumen del
-    imgpc.style.width='80px'
-
-    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
-    imgpc.src=mokepones[selectAleatorio].foto
-    ataquesMokeponEnemigo = mokepones[selectAleatorio].ataques
-    secuenciaAtaque()
-    
-
-}
-//function selctMascotaPc(enemigo){
+//function selctMascotaPc(){
 //    //agregar imagen mokepon al apartado de resumen del
 //    imgpc.style.width='80px'
-////
-//    spnmascotapc.innerHTML= enemigo.nombre
-//    imgpc.src=enemigo.foto
-//    ataquesMokeponEnemigo = enemigo.ataques
+//
+//    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
+//    imgpc.src=mokepones[selectAleatorio].foto
+//    ataquesMokeponEnemigo = mokepones[selectAleatorio].ataques
 //    secuenciaAtaque()
 //    
-////
+//
 //}
-
-
-
-function ataqueAleatorioPc(){
-    let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
+function selctMascotaPc(enemigo){
+    //agregar imagen mokepon al apartado de resumen del
+    imgpc.style.width='80px'
+//
+    spnmascotapc.innerHTML= enemigo.nombre
+    imgpc.src=enemigo.foto
+    ataquesMokeponEnemigo = enemigo.ataques
+    secuenciaAtaque()
     
-    if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🔥') {
+//
+}
+
+
+
+// function ataqueAleatorioPc(){
+//     let ataqAleatoriopc= aleatorio(0,ataquesMokeponEnemigo.length -1)
+    
+//     if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🔥') {
+//         ataqAleatorio.push('FUEGO')
+//     }else if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🌊'){
+//         ataqAleatorio.push('AGUA')
+//     }else{
+//         ataqAleatorio.push('TIERRA')
+//     }
+//     ataquesMokeponEnemigo.splice(ataqAleatoriopc,1)
+//     console.log(ataqAleatorio)
+//     iniciarPelea()
+// }
+function ataqueAleatorioPc() {
+    console.log('Ataques enemigo', ataquesMokeponEnemigo);
+    let ataqAleatoriopc = aleatorio(0,ataquesMokeponEnemigo.length -1)
+    
+    if (ataqAleatoriopc == 0 || ataqAleatoriopc ==1) {
         ataqAleatorio.push('FUEGO')
-    }else if (ataquesMokeponEnemigo[ataqAleatoriopc].nombre ==='🌊'){
+    } else if (ataqAleatoriopc == 3 || ataqAleatoriopc == 4) {
         ataqAleatorio.push('AGUA')
-    }else{
+    } else {
         ataqAleatorio.push('TIERRA')
     }
-    ataquesMokeponEnemigo.splice(ataqAleatoriopc,1)
     console.log(ataqAleatorio)
     iniciarPelea()
 }
@@ -588,8 +655,7 @@ function sePresionoUnaTecla(event){
 }
 
 function iniciarMapa(){
-    mapa.width= 420
-    mapa.height= 340
+
     mascotaDeJugadorObjeto=obtenerObjetoMascota(ataquesMascotaJugador)
     console.log(mascotaDeJugadorObjeto, ataquesMascotaJugador);
     intervalo =setInterval(pintarCanvas, 50)
@@ -625,10 +691,12 @@ function revisarColision(enemigo){
         return
     }
     detenerMovimiento()
+    clearInterval(intervalo)
     //alert("Hay colision con "+ enemigo.nombre)
-    seccionVerMapa.style.display = 'none'
+    console.log('se detecto colision')
     sectionAtaques.style.display ='flex'
+    seccionVerMapa.style.display = 'none'
     selctMascotaPc(enemigo)
 }
 
-window.addEventListener('load',modoDeJuego)
+window.addEventListener('load',iniciarjuego)
