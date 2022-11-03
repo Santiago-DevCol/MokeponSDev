@@ -222,6 +222,63 @@ input:checked +label{
 
 } */
 
+.arriba{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #F2DF3A;
+    border: 2px solid #3AB4F2;
+    color: #F6F6F6;
+}
+
+.mando-juego{
+    display: flex;
+    margin-top: -25px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.abajo{
+    display: flex;
+    margin-top: 76px;
+    margin-left: 34px;
+    margin-right: 34px;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 49%;
+    background-color: #F2DF3A;
+    border: 2px solid #3AB4F2;
+    color: #F6F6F6;
+}
+
+.izquierda,.derecha{
+    display: flex;
+    justify-content: space-evenly;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 34px;
+    border-radius: 49%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    background-color: #F2DF3A;
+    border: 2px solid #3AB4F2;
+    color: #F6F6F6;
+    padding: 4px;
+}
+
+
+
 @media (max-width:360px){
     .tarjetas, .tarjetas-ataques{
         flex-direction: column;  

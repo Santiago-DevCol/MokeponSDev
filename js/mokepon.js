@@ -666,16 +666,16 @@ function detenerMovimiento(){
 
 function sePresionoUnaTecla(event){
     switch (event.key) {
-        case 'ArrowUp': case 'w':
+        case 'ArrowUp': case 'w': case 'W':
             moverArriba()
             break
-        case 'ArrowDown': case 's':
+        case 'ArrowDown': case 's': case 'S':
             moverAbajo()
             break
-        case 'ArrowLeft': case 'a':
+        case 'ArrowLeft': case 'a': case 'A':
             moverIzquierda()
             break
-        case 'ArrowRight': case 'd':
+        case 'ArrowRight': case 'd': case 'D':
             moverDerecha()
             break
         default:
