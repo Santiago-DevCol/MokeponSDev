@@ -277,6 +277,9 @@ input:checked +label{
     padding: 4px;
 }
 
+.arriba:hover, .abajo:hover, .izquierda:hover,.derecha:hover{
+    cursor: pointer;
+}
 
 
 @media (max-width:360px){
