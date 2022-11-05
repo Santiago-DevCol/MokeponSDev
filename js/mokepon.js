@@ -27,11 +27,6 @@ const mapa =document.getElementById('mapa')
 const seccionModoDeJuego =document.getElementById('modo-Juego')
 const btnModoHistoria = document.getElementById('btnModeHistoria')
 const btnModoCombateRapido = document.getElementById('btnModeCombateRapido')
-
-const btnMoverArriba = document.getElementById('up')
-const btnMoverIzquierda = document.getElementById('left')
-const btnMoverAbajo = document.getElementById('down')
-const btnMoverDerecha = document.getElementById('rigth')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let mokepones = []
@@ -663,9 +658,7 @@ function pintarCanvas(){
 
 
 function moverDerecha(){
-    btnMoverDerecha.addEventListener('touchstart', moverDerecha)
     mascotaDeJugadorObjeto.velocidadX = 5
-    // btnMoverDerecha.addEventListener('touchend',moverDerecha)
 }
 
 function moverIzquierda(){
