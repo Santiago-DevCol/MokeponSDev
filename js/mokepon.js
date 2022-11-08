@@ -29,6 +29,7 @@ const btnModoHistoria = document.getElementById('btnModeHistoria')
 const btnModoCombateRapido = document.getElementById('btnModeCombateRapido')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
+let jugadorId = null
 let mokepones = []
 let ataqueJugador = []
 let ataqAleatorio = []
@@ -314,6 +315,7 @@ function unirseAlJuego(){
                 res.text()
                 .then(function(respuesta){
                     console.log(respuesta)
+                    jugadorId=respuesta
                 })
             }
         })
@@ -378,6 +380,9 @@ function selctMascotaPl(){
             location.reload()
         })
     }
+
+   
+    seleccionarMokepon(ataquesMascotaJugador)
     seccionVerMapa.style.display='flex'
     iniciarMapa()
     selectAleatorio = aleatorio(0, mokepones.length -1)
@@ -385,6 +390,18 @@ function selctMascotaPl(){
     extraerAtaques(ataquesMascotaJugador)
     //selctMascotaPc()
     //sectionAtaques.style.display ='flex'
+}
+
+function seleccionarMokepon(ataquesMascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`,{
+        method: "post",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: ataquesMascotaJugador 
+        })
+    })
 }
 
 function extraerTipo(){
