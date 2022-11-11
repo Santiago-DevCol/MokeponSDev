@@ -145,129 +145,78 @@ let pika= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png
 
 let snake= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png')
 
-let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
 
-let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
-
-let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
-
-let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
-
-let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
-
-let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
 
 //lista ataques - tipos
     //🌊 AGUA
     //🌎 TIERRA
     //🔥 FUEGO
+const HIPODO_ATAQUES=[
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+]
+const CAPI_ATAQUES=[
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
+]
+const RAT_ATAQUES=[
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+]
+const PICHON_ATAQUES=[
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
+]
+const PIKA_ATAQUES=[
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌎',id:'btntierra' },
+]
+const SNAKE_ATAQUES=[
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🌊',id:'btnagua' },
+    {nombre: '🌎',id:'btntierra' },
+    {nombre: '🔥',id:'btnfuego' },
+    {nombre: '🔥',id:'btnfuego' },
+]
 
-hipodo.ataques.push(
-    //objetos literarios
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-)
+hipodo.ataques.push(...HIPODO_ATAQUES)
 
-capi.ataques.push(
-    //objetos literarios
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🔥',id:'btnfuego' },
-)
+capi.ataques.push(...CAPI_ATAQUES)
 
-rat.ataques.push(
-    //objetos literarios
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-)
+rat.ataques.push(...RAT_ATAQUES)
 // ASIGNAR ORDEN DE ATAQUES A POKES NUEVOS
-pichon.ataques.push(
-    //objetos literarios
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌎',id:'btntierra' },
-)
+pichon.ataques.push(...PICHON_ATAQUES)
 
-pika.ataques.push(
-    //objetos literarios
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌎',id:'btntierra' },
-)
+pika.ataques.push(...PIKA_ATAQUES)
 
-snake.ataques.push(
-    //objetos literarios
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-)
-hipodoEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-)
+snake.ataques.push(...SNAKE_ATAQUES)
 
-capiEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🔥',id:'btnfuego' },
-)
+hipodoEnemigo.ataques.push(...HIPODO_ATAQUES)
 
-ratEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-)
+capiEnemigo.ataques.push(...CAPI_ATAQUES)
+
+ratEnemigo.ataques.push(...RAT_ATAQUES)
 // ASIGNAR ORDEN DE ATAQUES A POKES NUEVOS
-pichonEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌎',id:'btntierra' },
-)
+pichonEnemigo.ataques.push(...PICHON_ATAQUES)
 
-pikaEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌎',id:'btntierra' },
-)
+pikaEnemigo.ataques.push(...PIKA_ATAQUES)
 
-snakeEnemigo.ataques.push(
-    //objetos literarios
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🌊',id:'btnagua' },
-    {nombre: '🌎',id:'btntierra' },
-    {nombre: '🔥',id:'btnfuego' },
-    {nombre: '🔥',id:'btnfuego' },
-)
+snakeEnemigo.ataques.push(...SNAKE_ATAQUES)
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 
@@ -674,14 +623,30 @@ function pintarCanvas(){
 
 function enviarPosicion(x,y){
     fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`,{
-        method:"post",
+        method: "post",
         headers:{
-            "Contet-Type":"application/json"
+            "Content-Type": "application/json"
         },
-        body:JSON.stringify({
-            x,
-            y
+        body: JSON.stringify({
+            x:x,
+            y:y
+
         })
+    })
+    .then(function (res) {
+        if(res.ok){
+            res.json()
+                .then(function({enemigos}){
+                    console.log(enemigos)
+                    
+                    let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
+                    let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
+                    let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
+                    let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
+                    let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
+                    let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
+                })
+        }
     })
 }
 
