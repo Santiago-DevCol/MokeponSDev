@@ -235,6 +235,7 @@ input:checked +label{
     background-color: #F2DF3A;
     border: 2px solid #3AB4F2;
     color: #F6F6F6;
+    user-select: none;
 }
 
 .mando-juego{
@@ -258,6 +259,7 @@ input:checked +label{
     background-color: #F2DF3A;
     border: 2px solid #3AB4F2;
     color: #F6F6F6;
+    user-select: none;
 }
 
 .izquierda,.derecha{
@@ -275,6 +277,7 @@ input:checked +label{
     border: 2px solid #3AB4F2;
     color: #F6F6F6;
     padding: 4px;
+    user-select: none;
 }
 
 .arriba:hover, .abajo:hover, .izquierda:hover,.derecha:hover{

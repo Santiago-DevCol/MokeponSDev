@@ -26,11 +26,11 @@
             <h1 class="tituinicio">Recorre el mapa con tu Mokepon 🔥 🌊 🌎 </h1>
             
             <canvas id="mapa"></canvas>
-            <button class="arriba" onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+            <button class="arriba" ontouchend="detenerMovimiento()" ontouchstart="moverArriba()" onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
         <div class="mando-juego">
-            <button class="izquierda" onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
-            <button class="abajo" onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
-            <button class="derecha" onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+            <button class="izquierda"  ontouchend="detenerMovimiento()" ontouchstart="moverIzquierda()" onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+            <button class="abajo"  ontouchend="detenerMovimiento()" ontouchstart="moverAbajo()" onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+            <button class="derecha"  ontouchend="detenerMovimiento()" ontouchstart="moverDerecha()" onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
         </div>
              
         </section>
