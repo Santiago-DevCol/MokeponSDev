@@ -78,7 +78,8 @@ mapa.width = anchoDeMapa
 mapa.height = alturaBuscamos
 class Mokepon{
     //objetos instancia
-    constructor(nombre,foto,vida,tipo,fotoMapa,x=10,y=10){
+    constructor(nombre,foto,vida,tipo,fotoMapa,id=null){
+        this.id = id
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
@@ -206,7 +207,7 @@ pika.ataques.push(...PIKA_ATAQUES)
 
 snake.ataques.push(...SNAKE_ATAQUES)
 
-hipodoEnemigo.ataques.push(...HIPODO_ATAQUES)
+/*hipodoEnemigo.ataques.push(...HIPODO_ATAQUES)
 
 capiEnemigo.ataques.push(...CAPI_ATAQUES)
 
@@ -216,7 +217,7 @@ pichonEnemigo.ataques.push(...PICHON_ATAQUES)
 
 pikaEnemigo.ataques.push(...PIKA_ATAQUES)
 
-snakeEnemigo.ataques.push(...SNAKE_ATAQUES)
+snakeEnemigo.ataques.push(...SNAKE_ATAQUES)*/
 
 mokepones.push(hipodo, capi, rat,pichon, pika, snake)
 
@@ -638,13 +639,27 @@ function enviarPosicion(x,y){
             res.json()
                 .then(function({enemigos}){
                     console.log(enemigos)
-                    
-                    let hipodoEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
-                    let capiEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
-                    let ratEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
-                    let pichonEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
-                    let pikaEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
-                    let snakeEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
+
+                    enemigos.forEach(function(enemigo){
+                        let mokeponEnemigo = null
+                        const mokeponNombre=enemigo.mokepon.nombre || ""
+                        if(mokeponNombre === "Hipodo"){
+                            mokeponEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
+                        }else if(mokeponNombre ==="Capi"){
+                            mokeponEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
+                        }else if(mokeponNombre === "Rat"){
+                            mokeponEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
+                        }else if(mokeponNombre === "Pichon"){
+                            mokeponEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
+                        }else if(mokeponNombre === "Pika"){
+                            mokeponEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
+                        }else if (mokeponNombre === "Snake"){
+                            mokeponEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
+                        }
+                        mokeponEnemigo.x = enemigo.x
+                        mokeponEnemigo.y = enemigo.y
+                        mokeponEnemigo.pintarMokepon()
+                    })
                 })
         }
     })
