@@ -30,7 +30,9 @@ const btnModoCombateRapido = document.getElementById('btnModeCombateRapido')
 //pirmeros conceptos de array
     //primeros objetos de la clase Mokepon
 let jugadorId = null
+let enemigoId = null
 let mokepones = []
+let mokeponesEnemigos=[]
 let ataqueJugador = []
 let ataqAleatorio = []
 let opcionDeMokepones
@@ -274,7 +276,7 @@ function unirseAlJuego(){
 function selctMascotaPl(){
     
     
-    sectionMascota.style.display ='none'
+    
     imgPl.style.width='80px'
 
     
@@ -330,8 +332,8 @@ function selctMascotaPl(){
             location.reload()
         })
     }
+    sectionMascota.style.display ='none'
 
-   
     seleccionarMokepon(ataquesMascotaJugador)
     seccionVerMapa.style.display='flex'
     iniciarMapa()
@@ -438,17 +440,47 @@ function secuenciaAtaque(){
                 boton.style.background='#112f58'
                 boton.disabled = true
             }
+            if(ataqueJugador.length === 5){
+                enviarAtaques()
+            }
             
-            ataqueAleatorioPc()
-            
-        })
-        
+        })        
     })
+    
+}
+
+
+function enviarAtaques(){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`,{
+        method:"post",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques:ataqueJugador
+        })
+    })
+    intervalo = setInterval(obtenerAtaques,50)
+}
+
+function obtenerAtaques(){
+    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+        .then(function(res){
+            if (res.ok){
+                res.json()
+                    .then(function({ataques}){
+                        if(ataques.length===5){
+                            ataqAleatorio=ataques
+                            combate()
+                        }
+                    })
+            }
+        })
 }
 
 //function selctMascotaPc(){
-//    //agregar imagen mokepon al apartado de resumen del
-//    imgpc.style.width='80px'
+    //    //agregar imagen mokepon al apartado de resumen del
+    //    imgpc.style.width='80px'
 //
 //    spnmascotapc.innerHTML= mokepones[selectAleatorio].nombre
 //    imgpc.src=mokepones[selectAleatorio].foto
@@ -514,6 +546,9 @@ function indexAmbosOponentes(jugador,enemigo) {
 }//Continuo obteniendo 
 
 function combate(){
+
+    clearInterval(intervalo)
+
     
     for (let index = 0; index < ataqueJugador.length; index++) {
         if (ataqueJugador[index] === ataqAleatorio[index]){
@@ -605,21 +640,11 @@ function pintarCanvas(){
     )
     mascotaDeJugadorObjeto.pintarMokepon(true)
     enviarPosicion(mascotaDeJugadorObjeto.x, mascotaDeJugadorObjeto.y)
-    hipodoEnemigo.pintarMokepon()
-    capiEnemigo.pintarMokepon()
-    ratEnemigo.pintarMokepon()
-    pichonEnemigo.pintarMokepon()
-    pikaEnemigo.pintarMokepon()
-    snakeEnemigo.pintarMokepon()
+    mokeponesEnemigos.forEach(function (mokepon){
+        mokepon.pintarMokepon()
+        revisarColision(mokepon)
+    })
 
-    if (mascotaDeJugadorObjeto.velocidadX !== 0 || mascotaDeJugadorObjeto.velocidadY !== 0) {
-        revisarColision(hipodoEnemigo)
-        revisarColision(capiEnemigo)
-        revisarColision(ratEnemigo)
-        revisarColision(pichonEnemigo)
-        revisarColision(pikaEnemigo)
-        revisarColision(snakeEnemigo)
-    }
 }
 
 function enviarPosicion(x,y){
@@ -640,25 +665,25 @@ function enviarPosicion(x,y){
                 .then(function({enemigos}){
                     console.log(enemigos)
 
-                    enemigos.forEach(function(enemigo){
+                    mokeponesEnemigos= enemigos.map(function(enemigo){
                         let mokeponEnemigo = null
                         const mokeponNombre=enemigo.mokepon.nombre || ""
                         if(mokeponNombre === "Hipodo"){
-                            mokeponEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',)
+                            mokeponEnemigo= new Mokepon('Hipodo','./images/hipodo.png',5,'🌊','./images/hipodomapa.png',enemigo.id)
                         }else if(mokeponNombre ==="Capi"){
-                            mokeponEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',)
+                            mokeponEnemigo= new Mokepon('Capi','./images/capi.png',5,'🌎','./images/capimapa.png',enemigo.id)
                         }else if(mokeponNombre === "Rat"){
-                            mokeponEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',)
+                            mokeponEnemigo= new Mokepon('Rat','./images/rat.png',5,'🔥','./images/ratmapa.png',enemigo.id)
                         }else if(mokeponNombre === "Pichon"){
-                            mokeponEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',)
+                            mokeponEnemigo=new Mokepon('Pichon','./images/pichon.png',5,'🌊','./images/pichonmapa.png',enemigo.id)
                         }else if(mokeponNombre === "Pika"){
-                            mokeponEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png')
+                            mokeponEnemigo= new Mokepon('Pika','./images/pika.png',5,'🌎','./images/pikamapa.png',enemigo.id)
                         }else if (mokeponNombre === "Snake"){
-                            mokeponEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',)
+                            mokeponEnemigo= new Mokepon('Snake','./images/serpentina.png',5,'🔥','./images/serpentinamapa.png',enemigo.id)
                         }
                         mokeponEnemigo.x = enemigo.x
                         mokeponEnemigo.y = enemigo.y
-                        mokeponEnemigo.pintarMokepon()
+                        return mokeponEnemigo
                     })
                 })
         }
@@ -747,7 +772,9 @@ function revisarColision(enemigo){
     detenerMovimiento()
     clearInterval(intervalo)
     //alert("Hay colision con "+ enemigo.nombre)
+    //recordatorio para swet alert
     console.log('se detecto colision')
+    enemigoId=enemigo.id
     sectionAtaques.style.display ='flex'
     seccionVerMapa.style.display = 'none'
     selctMascotaPc(enemigo)
