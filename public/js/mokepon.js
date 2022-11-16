@@ -621,7 +621,32 @@ function crearMensajeFinal(resultadoFinal){
 }
 
 function reiniciarJuego(){
+    
+    reiniciarJugador(enemigoId)
     location.reload()
+
+
+}
+function reiniciarJugador(id){
+    
+    fetch(`http://192.168.1.102:8080/mokepon/${jugadorId}/clear`,{
+        method: "post",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id:id
+        })    
+    })
+    .then (function(res){
+            if(res.ok){
+                res.json()
+                    .then(function({jugadores}){
+                        console.log(jugadores)
+                    })
+            }
+        })
+
 }
 
 function aleatorio(min,max){
