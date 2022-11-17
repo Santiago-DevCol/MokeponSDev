@@ -118,6 +118,9 @@ app.post("/mokepon/:jugadorId/clear",(req,res)=>{
     const jugadorId = req.params.jugadorId || ""
     const jugadorIndex =jugadores.findIndex((jugador) => jugadorId === jugador.id)
     jugadores.splice(jugadorIndex,1)
+    //jugadores.filter((jugador)=>jugadorId !=jugador.id)
+    //const jugador = new Jugador(jugadorId)
+    //jugadores.push(jugador)
     res.send({jugadores:jugadores || []})
 })
 
