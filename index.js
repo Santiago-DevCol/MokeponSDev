@@ -104,7 +104,7 @@ app.get("/mokepon/:jugadorId/ataques",(req,res)=> {
     })
 })
 
-app.get("/mokepon/:jugadorId/clear",(req,res)=>{
+app.post("/mokepon/:jugadorId/clear",(req,res)=>{
     const jugadorId = req.params.jugadorId || ""
     const jugadorIndex =jugadores.findIndex((jugador) => jugadorId === jugador.id)
     jugadores.splice(jugadorIndex,1)
